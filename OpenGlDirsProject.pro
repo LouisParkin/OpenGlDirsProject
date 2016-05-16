@@ -7,4 +7,5 @@ SUBDIRS += \
         Tutorial24 \
         Tutorial25 \
         Tutorial32 \
-        Tutorial35
+        Tutorial35 \
+    Tutorial36

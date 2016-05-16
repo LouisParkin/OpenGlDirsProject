@@ -1,0 +1,23 @@
+mv  Tutorial4/shader.vs?  Tutorial4/shader.vs
+mv  Tutorial4/shader.fs?  Tutorial4/shader.fs
+mv  Tutorial5/shader.vs?  Tutorial5/shader.vs
+mv  Tutorial5/shader.fs?  Tutorial5/shader.fs
+mv  Tutorial6/shader.vs?  Tutorial6/shader.vs
+mv  Tutorial6/shader.fs?  Tutorial6/shader.fs
+mv  Tutorial7/shader.vs?  Tutorial7/shader.vs
+mv  Tutorial7/shader.fs?  Tutorial7/shader.fs
+mv  Tutorial8/shader.vs?  Tutorial8/shader.vs
+mv  Tutorial8/shader.fs?  Tutorial8/shader.fs
+mv  Tutorial9/shader.vs?  Tutorial9/shader.vs
+mv  Tutorial9/shader.fs?  Tutorial9/shader.fs
+mv Tutorial10/shader.vs? Tutorial10/shader.vs
+mv Tutorial10/shader.fs? Tutorial10/shader.fs
+mv Tutorial11/shader.vs? Tutorial11/shader.vs
+mv Tutorial11/shader.fs? Tutorial11/shader.fs
+mv Tutorial12/shader.vs? Tutorial12/shader.vs
+mv Tutorial12/shader.fs? Tutorial12/shader.fs
+mv Tutorial13/shader.vs? Tutorial13/shader.vs
+mv Tutorial13/shader.fs? Tutorial13/shader.fs
+mv Tutorial14/shader.vs? Tutorial14/shader.vs
+mv Tutorial14/shader.fs? Tutorial14/shader.fs
+

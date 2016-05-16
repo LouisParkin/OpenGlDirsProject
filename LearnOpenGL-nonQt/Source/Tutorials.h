@@ -1,0 +1,75 @@
+#ifndef TUTORIALS_H
+#define TUTORIALS_H
+
+#include <GL/glew.h>
+#include <GL/gl.h>
+#include <GL/freeglut.h>
+
+
+#include "ogldev_util.h"
+#include "ogldev_pipeline.h"
+#include "ogldev_camera.h"
+#include "ogldev_texture.h"
+#include "lighting_technique.h"
+#include "ogldev_glut_backend.h"
+
+#if __TUT_VERSION == 17
+  #include "Tutorial17/Tutorial17.h"
+  #include "ogldev_lights_common.h"
+#elif __TUT_VERSION == 18
+  #include "Tutorial18/Tutorial18.h"
+#elif __TUT_VERSION == 19
+  #include "Tutorial19/Tutorial19.h"
+#elif __TUT_VERSION == 20
+  #include "Tutorial20/Tutorial20.h"
+#elif __TUT_VERSION == 21
+  #include "Tutorial21/Tutorial21.h"
+#elif __TUT_VERSION == 22
+  #include "Tutorial22/Tutorial22.h"
+#elif __TUT_VERSION == 23
+  #include "Tutorial23/Tutorial23.h"
+#endif
+
+#include <set>
+
+class Tutorials
+{
+public:
+  enum GlobalDefaults {
+    WINDOW_WIDTH_1_14 = 1024,
+    WINDOW_HEIGHT_1_14 = 768,
+    WINDOW_WIDTH_15_17 = 1920,
+    WINDOW_HEIGHT_15_17 = 1080,
+    WINDOW_WIDTH_16 = 1280,
+    WINDOW_HEIGHT_16 = 1024,
+    WINDOW_START_X = 100,
+    WINDOW_START_Y = 100
+  };
+
+#ifdef __TUT_VERSION
+#if __TUT_VERSION <= 16
+
+  struct Vertex {
+    Vector3f m_pos;
+    Vector2f m_tex;
+
+    Vertex() {}
+
+    Vertex(Vector3f pos, Vector2f tex)
+    {
+      m_pos = pos;
+      m_tex = tex;
+    }
+  };
+
+#endif
+#endif
+
+  explicit Tutorials();
+  virtual ~Tutorials();
+
+protected:
+
+};
+
+#endif // TUTORIALS_H

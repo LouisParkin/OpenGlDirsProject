@@ -15,8 +15,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef TUT36_DS_LIGHT_PASS_TECH_H
-#define	TUT36_DS_LIGHT_PASS_TECH_H
+#ifndef TUT37_DS_LIGHT_PASS_TECH_H
+#define	TUT37_DS_LIGHT_PASS_TECH_H
 
 #include <string>
 
@@ -28,7 +28,7 @@ public:
 
     DSLightPassTech();
 
-    virtual bool Init(char* pVSFileName, char* pFSFileName);
+    virtual bool Init();    
 
     void SetWVP(const Matrix4f& WVP);
     void SetPositionTextureUnit(unsigned int TextureUnit);

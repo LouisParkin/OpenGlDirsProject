@@ -1,6 +1,6 @@
 /*
 
-	Copyright 2011 Etay Meiri
+  Copyright 2011 Etay Meiri
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -39,165 +39,177 @@ class Tutorial23 : public ICallbacks, public OgldevApp
 {
 public:
 
-    Tutorial23()
-    {
-        m_pShadowMapTech = NULL;
-        m_pGameCamera = NULL;
-        m_pMesh = NULL;
-        m_pQuad = NULL;
-        m_scale = 0.0f;
+  Tutorial23()
+  {
+    m_pShadowMapTechnique = NULL;
+    m_pGameCamera = NULL;
+    m_pMesh = NULL;
+    m_pQuad = NULL;
+    m_scale = 0.0f;
 
-        m_spotLight.AmbientIntensity = 0.0f;
-        m_spotLight.DiffuseIntensity = 0.9f;
-        m_spotLight.Color = Vector3f(1.0f, 1.0f, 1.0f);
-        m_spotLight.Attenuation.Linear = 0.01f;
-        m_spotLight.Position  = Vector3f(-20.0, 20.0, 5.0f);
-        m_spotLight.Direction = Vector3f(1.0f, -1.0f, 0.0f);
-        m_spotLight.Cutoff =  20.0f;
+    m_spotLight.AmbientIntensity = 0.0f;
+    m_spotLight.DiffuseIntensity = 0.9f;
+    m_spotLight.Color = Vector3f(1.0f, 1.0f, 1.0f);
+    m_spotLight.Attenuation.Linear = 0.01f;
+    m_spotLight.Position  = Vector3f(-20.0, 20.0, 5.0f);
+    m_spotLight.Direction = Vector3f(1.0f, -1.0f, 0.0f);
+    m_spotLight.Cutoff =  20.0f;
 
-        m_persProjInfo.FOV = 60.0f;
-        m_persProjInfo.Height = WINDOW_HEIGHT;
-        m_persProjInfo.Width = WINDOW_WIDTH;
-        m_persProjInfo.zNear = 1.0f;
-        m_persProjInfo.zFar = 50.0f;        
+    m_persProjInfo.FOV = 60.0f;
+    m_persProjInfo.Height = WINDOW_HEIGHT;
+    m_persProjInfo.Width = WINDOW_WIDTH;
+    m_persProjInfo.zNear = 1.0f;
+    m_persProjInfo.zFar = 50.0f;
+  }
+
+  ~Tutorial23()
+  {
+    SAFE_DELETE(m_pShadowMapTechnique);
+    SAFE_DELETE(m_pGameCamera);
+    SAFE_DELETE(m_pMesh);
+    SAFE_DELETE(m_pQuad);
+  }
+
+  bool Init()
+  {
+    if (!m_shadowMapFBO.Init(WINDOW_WIDTH, WINDOW_HEIGHT)) {
+      return false;
     }
 
-    ~Tutorial23()
-    {
-        SAFE_DELETE(m_pShadowMapTech);
-        SAFE_DELETE(m_pGameCamera);
-        SAFE_DELETE(m_pMesh);
-        SAFE_DELETE(m_pQuad);
+    m_pGameCamera = new Camera(WINDOW_WIDTH, WINDOW_HEIGHT/*, Pos, Target, Up*/);
+
+    m_pShadowMapTechnique = new ShadowMapTechnique();
+
+    if (!m_pShadowMapTechnique->Init()) {
+      printf("Error initializing the shadow map technique\n");
+      return false;
     }
 
-    bool Init()
-    {
-        if (!m_shadowMapFBO.Init(WINDOW_WIDTH, WINDOW_HEIGHT)) {
-            return false;
-        }
+    m_pShadowMapTechnique->Enable();
 
-        m_pGameCamera = new Camera(WINDOW_WIDTH, WINDOW_HEIGHT/*, Pos, Target, Up*/);
-     
-        m_pShadowMapTech = new ShadowMapTechnique();
+    m_pQuad = new Mesh();
 
-        if (!m_pShadowMapTech->Init()) {
-            printf("Error initializing the shadow map technique\n");
-            return false;
-        }        
-        
-        m_pShadowMapTech->Enable();
-       
-        m_pQuad = new Mesh();
-        
     if (!m_pQuad->LoadMesh("/home/lparkin/Projects/S3/OpenGlDirsProject/LearnOpenGL-nonQt/Project/Content/quad.obj")) {
-            return false;
-        }
+      return false;
+    }
 
-        m_pMesh = new Mesh();
+    m_pMesh = new Mesh();
 
     return m_pMesh->LoadMesh("/home/lparkin/Projects/S3/OpenGlDirsProject/LearnOpenGL-nonQt/Project/Content/phoenix_ugv.md2");
+  }
+
+  void Run()
+  {
+    GLUTBackendRun(this);
+  }
+
+  virtual void RenderSceneCB()
+  {
+    m_pGameCamera->OnRender();
+    m_scale += 0.05f;
+
+    ShadowMapPass();
+    RenderPass();
+
+    glutSwapBuffers();
+  }
+
+  virtual void ShadowMapPass()
+  {
+    m_shadowMapFBO.BindForWriting();
+
+    glClear(GL_DEPTH_BUFFER_BIT);
+
+    Pipeline p;
+    p.Scale(0.1f, 0.1f, 0.1f);
+    p.Rotate(0.0f, m_scale, 0.0f);
+    p.WorldPos(0.0f, 0.0f, 5.0f);
+    p.SetCamera(m_spotLight.Position, m_spotLight.Direction, Vector3f(0.0f, 1.0f, 0.0f));
+    p.SetPerspectiveProj(m_persProjInfo);
+    m_pShadowMapTechnique->SetWorldViewProjection(p.GetWorldViewProjectionTrans());
+    m_pMesh->Render();
+
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+  }
+
+  virtual void RenderPass()
+  {
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    m_pShadowMapTechnique->SetTextureUnit(0);
+    m_shadowMapFBO.BindForReading(GL_TEXTURE0);
+
+    Pipeline p;
+    p.Scale(5.0f, 5.0f, 5.0f);
+    p.WorldPos(0.0f, 0.0f, 10.0f);
+    p.SetCamera(m_pGameCamera->GetPos(), m_pGameCamera->GetTarget(), m_pGameCamera->GetUp());
+    p.SetPerspectiveProj(m_persProjInfo);
+    m_pShadowMapTechnique->SetWorldViewProjection(p.GetWorldViewProjectionTrans());
+    m_pQuad->Render();
+  }
+
+
+  void KeyboardCB(OGLDEV_KEY OgldevKey)
+  {
+    switch (OgldevKey) {
+    case OGLDEV_KEY_ESCAPE:
+    case OGLDEV_KEY_q:
+      GLUTBackendLeaveMainLoop();
+      break;
+    case OGLDEV_KEY_a:
+      m_spotLight.AmbientIntensity += 0.05f;
+      break;
+    case OGLDEV_KEY_s:
+      m_spotLight.AmbientIntensity -= 0.05f;
+      break;
+    case OGLDEV_KEY_z:
+      m_spotLight.DiffuseIntensity += 0.05f;
+      break;
+    case OGLDEV_KEY_x:
+      m_spotLight.DiffuseIntensity -= 0.05f;
+      break;
+    default:
+      m_pGameCamera->OnKeyboard(OgldevKey);
     }
-
-    void Run()
-    {
-        GLUTBackendRun(this);
-    }
-
-    virtual void RenderSceneCB()
-    {
-        m_pGameCamera->OnRender();
-        m_scale += 0.05f;
-
-        ShadowMapPass();
-        RenderPass();
-        
-        glutSwapBuffers();
-    }
-
-    virtual void ShadowMapPass()
-    {
-        m_shadowMapFBO.BindForWriting();
-
-        glClear(GL_DEPTH_BUFFER_BIT);
-
-        Pipeline p;
-        p.Scale(0.1f, 0.1f, 0.1f);
-        p.Rotate(0.0f, m_scale, 0.0f);
-        p.WorldPos(0.0f, 0.0f, 5.0f);
-        p.SetCamera(m_spotLight.Position, m_spotLight.Direction, Vector3f(0.0f, 1.0f, 0.0f));
-        p.SetPerspectiveProj(m_persProjInfo);
-        m_pShadowMapTech->SetWVP(p.GetWVPTrans());
-        m_pMesh->Render();
-        
-        glBindFramebuffer(GL_FRAMEBUFFER, 0);
-    }
-    
-    virtual void RenderPass()
-    {
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-      
-        m_pShadowMapTech->SetTextureUnit(0);
-        m_shadowMapFBO.BindForReading(GL_TEXTURE0);
-
-        Pipeline p;
-        p.Scale(5.0f, 5.0f, 5.0f);
-        p.WorldPos(0.0f, 0.0f, 10.0f);
-        p.SetCamera(m_pGameCamera->GetPos(), m_pGameCamera->GetTarget(), m_pGameCamera->GetUp());
-        p.SetPerspectiveProj(m_persProjInfo);
-        m_pShadowMapTech->SetWVP(p.GetWVPTrans());
-        m_pQuad->Render();       
-    }
+  }
 
 
-	void KeyboardCB(OGLDEV_KEY OgldevKey)
-	{
-		switch (OgldevKey) {
-		case OGLDEV_KEY_ESCAPE:
-		case OGLDEV_KEY_q:
-			GLUTBackendLeaveMainLoop();
-			break;
-		default:
-			m_pGameCamera->OnKeyboard(OgldevKey);
-		}
-	}
+  virtual void PassiveMouseCB(int x, int y)
+  {
+    m_pGameCamera->OnMouse(x, y);
+  }
 
+private:
 
-	virtual void PassiveMouseCB(int x, int y)
-	{
-		m_pGameCamera->OnMouse(x, y);
-	}
-
- private:
-
-    ShadowMapTechnique* m_pShadowMapTech;
-    Camera* m_pGameCamera;
-    float m_scale;
-    SpotLight m_spotLight;
-    Mesh* m_pMesh;
-    Mesh* m_pQuad;
-    ShadowMapFBO m_shadowMapFBO;
-    PersProjInfo m_persProjInfo;	
+  ShadowMapTechnique* m_pShadowMapTechnique;
+  Camera* m_pGameCamera;
+  float m_scale;
+  SpotLight m_spotLight;
+  Mesh* m_pMesh;
+  Mesh* m_pQuad;
+  ShadowMapFBO m_shadowMapFBO;
+  PersProjInfo m_persProjInfo;
 };
 
 
 int main(int argc, char** argv)
 {
 //    Magick::InitializeMagick(*argv);
-    GLUTBackendInit(argc, argv, true, false);
+  GLUTBackendInit(argc, argv, true, false);
 
-    if (!GLUTBackendCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, false, "Tutorial 23")) {
-        return 1;
-    }
+  if (!GLUTBackendCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, false, "Tutorial 23")) {
+    return 1;
+  }
 
-    Tutorial23* pApp = new Tutorial23();
+  Tutorial23* pApp = new Tutorial23();
 
-    if (!pApp->Init()) {
-        return 1;
-    }
+  if (!pApp->Init()) {
+    return 1;
+  }
 
-    pApp->Run();
+  pApp->Run();
 
-    delete pApp;
- 
-    return 0;
+  delete pApp;
+
+  return 0;
 }

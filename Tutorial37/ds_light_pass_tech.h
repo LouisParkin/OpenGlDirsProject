@@ -30,7 +30,7 @@ public:
 
     virtual bool Init();    
 
-    void SetWVP(const Matrix4f& WVP);
+    void SetWorldViewProjection(const Matrix4f& WorldViewProjection);
     void SetPositionTextureUnit(unsigned int TextureUnit);
     void SetColorTextureUnit(unsigned int TextureUnit);
     void SetNormalTextureUnit(unsigned int TextureUnit);
@@ -41,7 +41,7 @@ public:
     
 private:
 
-    GLuint m_WVPLocation;
+    GLuint m_WorldViewProjectionLocation;
     GLuint m_posTextureUnitLocation;
     GLuint m_normalTextureUnitLocation;
     GLuint m_colorTextureUnitLocation;

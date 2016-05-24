@@ -24,7 +24,8 @@ bool Tutorial22::Init(char* pVSFileName, char* pFSFileName)
 
   m_pMesh = new Mesh();
 
-  return m_pMesh->LoadMesh("/home/lparkin/Projects/S3/OpenGlDirsProject/LearnOpenGL-nonQt/Project/Content/phoenix_ugv.md2");
+//  return m_pMesh->LoadMesh("/home/lparkin/Projects/S3/OpenGlDirsProject/LearnOpenGL-nonQt/Project/Content/phoenix_ugv.md2");
+  return m_pMesh->LoadMesh("/home/lparkin/Projects/S3/OpenGlDirsProject/LearnOpenGL-nonQt/Project/Content/bunny.obj");
 }
 
 void Tutorial22::Run()
@@ -67,7 +68,7 @@ void Tutorial22::RenderSceneCB()
   p.WorldPos(0.0f, 0.0f, 10.0f);
   p.SetCamera(m_pGameCamera->GetPos(), m_pGameCamera->GetTarget(), m_pGameCamera->GetUp());
   p.SetPerspectiveProj(m_persProjInfo);
-  m_pEffect->SetWVP(p.GetWVPTrans());
+  m_pEffect->SetWorldViewProjection(p.GetWorldViewProjectionTrans());
   m_pEffect->SetWorldMatrix(p.GetWorldTrans());
   m_pEffect->SetDirectionalLight(m_directionalLight);
   m_pEffect->SetEyeWorldPos(m_pGameCamera->GetPos());

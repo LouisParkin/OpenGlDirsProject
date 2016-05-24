@@ -134,7 +134,7 @@ public:
     p.SetCamera(m_pGameCamera->GetPos(), m_pGameCamera->GetTarget(), m_pGameCamera->GetUp());
     p.SetPerspectiveProj(m_persProjInfo);
 
-    m_pLightingTechnique->SetWVP(p.GetWVPTrans());
+    m_pLightingTechnique->SetWorldViewProjection(p.GetWorldViewProjectionTrans());
     m_pLightingTechnique->SetWorldMatrix(p.GetWorldTrans());
     m_pTankMesh->Render();
 

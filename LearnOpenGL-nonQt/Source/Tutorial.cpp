@@ -5,7 +5,7 @@ GLuint Tutorial::_IBO;
 
 GLuint Tutorial::_gWorldLocation;
 GLuint Tutorial::_gScaleLocation;
-GLuint Tutorial::_gWVPLocation;
+GLuint Tutorial::_gWorldViewProjectionLocation;
 
 PersProjInfo Tutorial::_gPersProjInfo;
 Camera* Tutorial::_pGameCamera;
@@ -203,10 +203,10 @@ std::function<void (void)> Tutorial::makeCompileShadersFunc()
   /// Define functionality common to Tutorials 15 and 16 only.
   auto common_functionality_15_16 = [ & ]() {
     /// This tutorial is about the use of Uniform shader attributes (matrices) to transform vertices, retrieve and store it.
-    _gWVPLocation = glGetUniformLocation(shaderProgram, "gWVP");
+    _gWorldViewProjectionLocation = glGetUniformLocation(shaderProgram, "gWVP");
 
     /// Ensure it succeeded, handle the possible failure.
-    assert(_gWVPLocation != 0xFFFFFFFF);
+    assert(_gWorldViewProjectionLocation != 0xFFFFFFFF);
   };
 
   /// Determines the tutorial selected from the menu, jumps to that version's lambda-creation.
@@ -635,7 +635,7 @@ std::function<void ()> Tutorial::makeDisplayFunc()
       pipeLine.SetPerspectiveProj(_gPersProjInfo);
 
       /// Load the matrix into the shader.
-      glUniformMatrix4fv(_gWVPLocation, 1, GL_TRUE, (const GLfloat*)pipeLine.GetWVPTrans());
+      glUniformMatrix4fv(_gWorldViewProjectionLocation, 1, GL_TRUE, (const GLfloat*)pipeLine.GetWorldViewProjectionTrans());
 
       glEnableVertexAttribArray(0);
       glBindBuffer(GL_ARRAY_BUFFER, _VBO);
@@ -666,7 +666,7 @@ std::function<void ()> Tutorial::makeDisplayFunc()
       pipeLine.SetPerspectiveProj(_gPersProjInfo);
 
       /// Load the matrix into the shader.
-      glUniformMatrix4fv(_gWVPLocation, 1, GL_TRUE, (const GLfloat*)pipeLine.GetWVPTrans());
+      glUniformMatrix4fv(_gWorldViewProjectionLocation, 1, GL_TRUE, (const GLfloat*)pipeLine.GetWorldViewProjectionTrans());
 
       glEnableVertexAttribArray(0);
       glBindBuffer(GL_ARRAY_BUFFER, _VBO);
@@ -699,7 +699,7 @@ std::function<void ()> Tutorial::makeDisplayFunc()
       pipeLine.SetPerspectiveProj(_gPersProjInfo);
 
       /// Load the matrix into the shader.
-      glUniformMatrix4fv(_gWVPLocation, 1, GL_TRUE, (const GLfloat*)pipeLine.GetWVPTrans());
+      glUniformMatrix4fv(_gWorldViewProjectionLocation, 1, GL_TRUE, (const GLfloat*)pipeLine.GetWorldViewProjectionTrans());
 
       glEnableVertexAttribArray(0);
       glBindBuffer(GL_ARRAY_BUFFER, _VBO);
@@ -732,7 +732,7 @@ std::function<void ()> Tutorial::makeDisplayFunc()
       pipeLine.SetPerspectiveProj(_gPersProjInfo);
 
       /// Load the matrix into the shader.
-      glUniformMatrix4fv(_gWVPLocation, 1, GL_TRUE, (const GLfloat*)pipeLine.GetWVPTrans());
+      glUniformMatrix4fv(_gWorldViewProjectionLocation, 1, GL_TRUE, (const GLfloat*)pipeLine.GetWorldViewProjectionTrans());
 
       glEnableVertexAttribArray(0);
       glEnableVertexAttribArray(1);
@@ -854,7 +854,7 @@ std::function<void (int, int, int)> Tutorial::makeSpecialFunc()
   case 14:
   case 15:
   case 16:
-    return [ & ](int Key, int , int ) {
+    return [ & ](int Key, int , int) {
       OGLDEV_KEY OgldevKey = GLUTKeyToOGLDEVKey(Key);
       _pGameCamera->OnKeyboard(OgldevKey);
     };
@@ -882,7 +882,7 @@ std::function<void (int, int, int)> Tutorial::makeKeyboardFunc()
   case 14:
   case 15:
   case 16:
-    return [ & ](int Key, int , int ) {
+    return [ & ](int Key, int , int) {
       switch (Key) {
       case 'q':
         glutLeaveMainLoop();

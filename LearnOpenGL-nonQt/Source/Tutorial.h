@@ -42,7 +42,7 @@ private:
   static GLuint _IBO;
   static GLuint _gWorldLocation;
   static GLuint _gScaleLocation;
-  static GLuint _gWVPLocation;
+  static GLuint _gWorldViewProjectionLocation;
   static PersProjInfo _gPersProjInfo;
   static Camera* _pGameCamera;
   static char pVSFileName[255];

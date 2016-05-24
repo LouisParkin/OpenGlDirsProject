@@ -29,7 +29,7 @@ DSLightPassTech::DSLightPassTech()
 
 bool DSLightPassTech::Init(char* pVSFileName, char* pFSFileName)
 {
-    m_WVPLocation = GetUniformLocation("gWVP");
+    m_WorldViewProjectionLocation = GetUniformLocation("gWVP");
 	m_posTextureUnitLocation = GetUniformLocation("gPositionMap");
 	m_colorTextureUnitLocation = GetUniformLocation("gColorMap");
 	m_normalTextureUnitLocation = GetUniformLocation("gNormalMap");
@@ -38,7 +38,7 @@ bool DSLightPassTech::Init(char* pVSFileName, char* pFSFileName)
     m_matSpecularPowerLocation = GetUniformLocation("gSpecularPower");
     m_screenSizeLocation = GetUniformLocation("gScreenSize");
 
-	if (m_WVPLocation == INVALID_UNIFORM_LOCATION ||
+	if (m_WorldViewProjectionLocation == INVALID_UNIFORM_LOCATION ||
         m_posTextureUnitLocation == INVALID_UNIFORM_LOCATION ||
         m_colorTextureUnitLocation == INVALID_UNIFORM_LOCATION ||
 		m_normalTextureUnitLocation == INVALID_UNIFORM_LOCATION ||
@@ -53,9 +53,9 @@ bool DSLightPassTech::Init(char* pVSFileName, char* pFSFileName)
 }
 
 
-void DSLightPassTech::SetWVP(const Matrix4f& WVP)
+void DSLightPassTech::SetWorldViewProjection(const Matrix4f& WorldViewProjection)
 {
-    glUniformMatrix4fv(m_WVPLocation, 1, GL_TRUE, (const GLfloat*)WVP.m);    
+    glUniformMatrix4fv(m_WorldViewProjectionLocation, 1, GL_TRUE, (const GLfloat*)WorldViewProjection.m);    
 }
 
 

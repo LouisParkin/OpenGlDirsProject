@@ -1,6 +1,6 @@
 /*
 
-	Copyright 2011 Etay Meiri
+  Copyright 2011 Etay Meiri
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -35,177 +35,177 @@
 
 using namespace std;
 
-#define WINDOW_WIDTH  1280  
+#define WINDOW_WIDTH  1280
 #define WINDOW_HEIGHT 1024
 
 class Tutorial35 : public ICallbacks, public OgldevApp
 {
 public:
 
-    Tutorial35() 
-    {
-        m_pGameCamera = NULL;
-        m_scale = 0.0f;
+  Tutorial35()
+  {
+    m_pGameCamera = NULL;
+    m_scale = 0.0f;
 
-        m_persProjInfo.FOV = 60.0f;
-        m_persProjInfo.Height = WINDOW_HEIGHT;
-        m_persProjInfo.Width = WINDOW_WIDTH;
-        m_persProjInfo.zNear = 1.0f;
-        m_persProjInfo.zFar = 100.0f;  
+    m_persProjInfo.FOV = 60.0f;
+    m_persProjInfo.Height = WINDOW_HEIGHT;
+    m_persProjInfo.Width = WINDOW_WIDTH;
+    m_persProjInfo.zNear = 1.0f;
+    m_persProjInfo.zFar = 100.0f;
+  }
+
+  ~Tutorial35()
+  {
+    SAFE_DELETE(m_pGameCamera);
+  }
+
+  bool Init()
+  {
+    if (!m_gbuffer.Init(WINDOW_WIDTH, WINDOW_HEIGHT)) {
+      return false;
     }
 
-    ~Tutorial35()
-    {
-        SAFE_DELETE(m_pGameCamera);
-    }    
+    m_pGameCamera = new Camera(WINDOW_WIDTH, WINDOW_HEIGHT);
 
-    bool Init()
-    {
-        if (!m_gbuffer.Init(WINDOW_WIDTH, WINDOW_HEIGHT)) {
-            return false;
-        }
+    if (!m_DSGeomPassTech.Init("/home/lparkin/Projects/S3/OpenGlDirsProject/Tutorial35/shaders/geometry_pass.vs",
+                               "/home/lparkin/Projects/S3/OpenGlDirsProject/Tutorial35/shaders/geometry_pass.fs")) {
+      printf("Error initializing DSGeomPassTech\n");
+      return false;
+    }
 
-        m_pGameCamera = new Camera(WINDOW_WIDTH, WINDOW_HEIGHT);
+    m_DSGeomPassTech.Enable();
+    m_DSGeomPassTech.SetColorTextureUnit(COLOR_TEXTURE_UNIT_INDEX);
 
-        if (!m_DSGeomPassTech.Init("/home/lparkin/Projects/S3/OpenGlDirsProject/Tutorial35/shaders/geometry_pass.vs",
-                                   "/home/lparkin/Projects/S3/OpenGlDirsProject/Tutorial35/shaders/geometry_pass.fs")) {
-            printf("Error initializing DSGeomPassTech\n");
-            return false;
-        }      
-
-		m_DSGeomPassTech.Enable();
-		m_DSGeomPassTech.SetColorTextureUnit(COLOR_TEXTURE_UNIT_INDEX);
-
-				if (!m_mesh.LoadMesh("/home/lparkin/Projects/S3/OpenGlDirsProject/LearnOpenGL-nonQt/Project/Content/phoenix_ugv.md2")) {
-			return false;
-		}
+    if (!m_mesh.LoadMesh("/home/lparkin/Projects/S3/OpenGlDirsProject/LearnOpenGL-nonQt/Project/Content/phoenix_ugv.md2")) {
+      return false;
+    }
 
 #ifndef WIN32
-        if (!m_fontRenderer.InitFontRenderer()) {
-            return false;
-        }
+    if (!m_fontRenderer.InitFontRenderer()) {
+      return false;
+    }
 #endif
-        
-        return true;
+
+    return true;
+  }
+
+  void Run()
+  {
+    GLUTBackendRun(this);
+  }
+
+
+  virtual void RenderSceneCB()
+  {
+    CalcFPS();
+
+    m_scale += 0.05f;
+
+    m_pGameCamera->OnRender();
+
+    DSGeometryPass();
+    DSLightPass();
+
+    RenderFPS();
+
+    glutSwapBuffers();
+  }
+
+
+  void DSGeometryPass()
+  {
+    m_DSGeomPassTech.Enable();
+
+    m_gbuffer.BindForWriting();
+
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    Pipeline p;
+    p.Scale(0.1f, 0.1f, 0.1f);
+    p.Rotate(0.0f, m_scale, 0.0f);
+    p.WorldPos(-0.8f, -1.0f, 12.0f);
+    p.SetCamera(m_pGameCamera->GetPos(), m_pGameCamera->GetTarget(), m_pGameCamera->GetUp());
+    p.SetPerspectiveProj(m_persProjInfo);
+    m_DSGeomPassTech.SetWorldViewProjection(p.GetWorldViewProjectionTrans());
+    m_DSGeomPassTech.SetWorldMatrix(p.GetWorldTrans());
+    m_mesh.Render();
+  }
+
+  void DSLightPass()
+  {
+    glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
+
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    m_gbuffer.BindForReading();
+
+    GLint HalfWidth = (GLint)(WINDOW_WIDTH / 2.0f);
+    GLint HalfHeight = (GLint)(WINDOW_HEIGHT / 2.0f);
+
+    m_gbuffer.SetReadBuffer(GBuffer::GBUFFER_TEXTURE_TYPE_POSITION);
+    glBlitFramebuffer(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, 0, 0, HalfWidth, HalfHeight, GL_COLOR_BUFFER_BIT, GL_LINEAR);
+
+    m_gbuffer.SetReadBuffer(GBuffer::GBUFFER_TEXTURE_TYPE_DIFFUSE);
+    glBlitFramebuffer(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, 0, HalfHeight, HalfWidth, WINDOW_HEIGHT, GL_COLOR_BUFFER_BIT, GL_LINEAR);
+
+    m_gbuffer.SetReadBuffer(GBuffer::GBUFFER_TEXTURE_TYPE_NORMAL);
+    glBlitFramebuffer(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, HalfWidth, HalfHeight, WINDOW_WIDTH, WINDOW_HEIGHT, GL_COLOR_BUFFER_BIT, GL_LINEAR);
+
+    m_gbuffer.SetReadBuffer(GBuffer::GBUFFER_TEXTURE_TYPE_TEXCOORD);
+    glBlitFramebuffer(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, HalfWidth, 0, WINDOW_WIDTH, HalfHeight, GL_COLOR_BUFFER_BIT, GL_LINEAR);
+  }
+
+
+  void KeyboardCB(OGLDEV_KEY OgldevKey)
+  {
+    switch (OgldevKey) {
+    case OGLDEV_KEY_ESCAPE:
+    case OGLDEV_KEY_q:
+      GLUTBackendLeaveMainLoop();
+      break;
+    default:
+      m_pGameCamera->OnKeyboard(OgldevKey);
     }
-
-    void Run()
-    {
-        GLUTBackendRun(this);
-    }
-    
-
-    virtual void RenderSceneCB()
-    {   
-        CalcFPS();
-        
-        m_scale += 0.05f;
-
-        m_pGameCamera->OnRender();
-
-        DSGeometryPass();
-		DSLightPass();
-                            
-        RenderFPS();
-        
-        glutSwapBuffers();
-    }
-    
-
-    void DSGeometryPass()
-    {
-		m_DSGeomPassTech.Enable();
-
-        m_gbuffer.BindForWriting();
-
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-		Pipeline p;
-        p.Scale(0.1f, 0.1f, 0.1f);
-        p.Rotate(0.0f, m_scale, 0.0f);
-        p.WorldPos(-0.8f, -1.0f, 12.0f);
-        p.SetCamera(m_pGameCamera->GetPos(), m_pGameCamera->GetTarget(), m_pGameCamera->GetUp());
-        p.SetPerspectiveProj(m_persProjInfo);
-        m_DSGeomPassTech.SetWVP(p.GetWVPTrans());        
-		m_DSGeomPassTech.SetWorldMatrix(p.GetWorldTrans());
-        m_mesh.Render();       
-    }
-     
-    void DSLightPass()
-    {       
-        glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
-
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-      
-        m_gbuffer.BindForReading();
-        
-        GLint HalfWidth = (GLint)(WINDOW_WIDTH / 2.0f);
-        GLint HalfHeight = (GLint)(WINDOW_HEIGHT / 2.0f);
-        
-        m_gbuffer.SetReadBuffer(GBuffer::GBUFFER_TEXTURE_TYPE_POSITION);
-        glBlitFramebuffer(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, 0, 0, HalfWidth, HalfHeight, GL_COLOR_BUFFER_BIT, GL_LINEAR);
-
-        m_gbuffer.SetReadBuffer(GBuffer::GBUFFER_TEXTURE_TYPE_DIFFUSE);
-        glBlitFramebuffer(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, 0, HalfHeight, HalfWidth, WINDOW_HEIGHT, GL_COLOR_BUFFER_BIT, GL_LINEAR);
-
-        m_gbuffer.SetReadBuffer(GBuffer::GBUFFER_TEXTURE_TYPE_NORMAL);
-        glBlitFramebuffer(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, HalfWidth, HalfHeight, WINDOW_WIDTH, WINDOW_HEIGHT, GL_COLOR_BUFFER_BIT, GL_LINEAR);
-
-        m_gbuffer.SetReadBuffer(GBuffer::GBUFFER_TEXTURE_TYPE_TEXCOORD);
-        glBlitFramebuffer(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, HalfWidth, 0, WINDOW_WIDTH, HalfHeight, GL_COLOR_BUFFER_BIT, GL_LINEAR);	
-    }
+  }
 
 
-	void KeyboardCB(OGLDEV_KEY OgldevKey)
-	{
-		switch (OgldevKey) {
-		case OGLDEV_KEY_ESCAPE:
-		case OGLDEV_KEY_q:
-			GLUTBackendLeaveMainLoop();
-			break;
-		default:
-			m_pGameCamera->OnKeyboard(OgldevKey);
-		}
-	}
+  virtual void PassiveMouseCB(int x, int y)
+  {
+    m_pGameCamera->OnMouse(x, y);
+  }
 
 
-	virtual void PassiveMouseCB(int x, int y)
-	{
-		m_pGameCamera->OnMouse(x, y);
-	}
-    
-    
 private:
-    
-	DSGeomPassTech m_DSGeomPassTech;
-    Camera* m_pGameCamera;
-    float m_scale;
-    BasicMesh m_mesh;
-    PersProjInfo m_persProjInfo;
-    GBuffer m_gbuffer;
+
+  DSGeomPassTech m_DSGeomPassTech;
+  Camera* m_pGameCamera;
+  float m_scale;
+  BasicMesh m_mesh;
+  PersProjInfo m_persProjInfo;
+  GBuffer m_gbuffer;
 };
 
 
 int main(int argc, char** argv)
 {
 //    Magick::InitializeMagick(*argv);
-    GLUTBackendInit(argc, argv, true, false);
+  GLUTBackendInit(argc, argv, true, false);
 
-    if (!GLUTBackendCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, false, "Tutorial 35")) {
-        return 1;
-    }
-    
-    SRANDOM;
- 
-    Tutorial35* pApp = new Tutorial35();
+  if (!GLUTBackendCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, false, "Tutorial 35")) {
+    return 1;
+  }
 
-    if (!pApp->Init()) {
-        return 1;
-    }
-    
-    pApp->Run();
+  SRANDOM;
 
-    delete pApp;
- 
-    return 0;
+  Tutorial35* pApp = new Tutorial35();
+
+  if (!pApp->Init()) {
+    return 1;
+  }
+
+  pApp->Run();
+
+  delete pApp;
+
+  return 0;
 }

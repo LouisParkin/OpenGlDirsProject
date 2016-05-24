@@ -29,13 +29,13 @@ public:
 
   virtual bool Init(char* pVSFileName, char* pFSFileName);
 
-  void SetWVP(const Matrix4f& WVP);
-  void SetWorldMatrix(const Matrix4f& WVP);
+  void SetWorldViewProjection(const Matrix4f& WorldViewProjection);
+  void SetWorldMatrix(const Matrix4f& WorldViewProjection);
   void SetColorTextureUnit(unsigned int TextureUnit);
 
 private:
 
-  GLuint m_WVPLocation;
+  GLuint m_WorldViewProjectionLocation;
   GLuint m_WorldMatrixLocation;
   GLuint m_colorTextureUnitLocation;
 };

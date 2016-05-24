@@ -134,19 +134,19 @@ public:
         
         p.Scale(0.1f, 0.1f, 0.1f);        
         p.WorldPos(-6.0f, -2.0f, 10.0f);        
-        m_pEffect->SetWVP(p.GetWVPTrans());
+        m_pEffect->SetWorldViewProjection(p.GetWorldViewProjectionTrans());
         m_pEffect->SetWorldMatrix(p.GetWorldTrans());               
         m_pMesh1->Render();
 
         p.Scale(0.01f, 0.01f, 0.01f);
         p.WorldPos(6.0f, -2.0f, 10.0f);
-        m_pEffect->SetWVP(p.GetWVPTrans());
+        m_pEffect->SetWorldViewProjection(p.GetWorldViewProjectionTrans());
         m_pEffect->SetWorldMatrix(p.GetWorldTrans());        
         m_pMesh2->Render();
 
         p.Scale(0.04f, 0.04f, 0.04f);
         p.WorldPos(0.0f, 6.0f, 10.0f);
-        m_pEffect->SetWVP(p.GetWVPTrans());
+        m_pEffect->SetWorldViewProjection(p.GetWorldViewProjectionTrans());
         m_pEffect->SetWorldMatrix(p.GetWorldTrans());        
         m_pMesh3->Render();
         

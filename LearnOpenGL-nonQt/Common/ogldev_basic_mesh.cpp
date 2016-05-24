@@ -257,10 +257,10 @@ void BasicMesh::Render()
     glBindVertexArray(0);
 }
 
-void BasicMesh::Render(unsigned int NumInstances, const Matrix4f* WVPMats, const Matrix4f* WorldMats)
+void BasicMesh::Render(unsigned int NumInstances, const Matrix4f* WorldViewProjectionMats, const Matrix4f* WorldMats)
 {        
-    glBindBuffer(GL_ARRAY_BUFFER, m_Buffers[WVP_MAT_VB]);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(Matrix4f) * NumInstances, WVPMats, GL_DYNAMIC_DRAW);
+    glBindBuffer(GL_ARRAY_BUFFER, m_Buffers[WorldViewProjection_MAT_VB]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(Matrix4f) * NumInstances, WorldViewProjectionMats, GL_DYNAMIC_DRAW);
 
     glBindBuffer(GL_ARRAY_BUFFER, m_Buffers[WORLD_MAT_VB]);
     glBufferData(GL_ARRAY_BUFFER, sizeof(Matrix4f) * NumInstances, WorldMats, GL_DYNAMIC_DRAW);

@@ -59,7 +59,7 @@ public:
 
     void Render();
 	
-    void Render(unsigned int NumInstances, const Matrix4f* WVPMats, const Matrix4f* WorldMats);
+    void Render(unsigned int NumInstances, const Matrix4f* WorldViewProjectionMats, const Matrix4f* WorldMats);
     
     Orientation& GetOrientation() { return m_orientation; }
 
@@ -80,7 +80,7 @@ private:
 #define POS_VB       1
 #define NORMAL_VB    2
 #define TEXCOORD_VB  3    
-#define WVP_MAT_VB   4
+#define WorldViewProjection_MAT_VB   4
 #define WORLD_MAT_VB 5
 
     GLuint m_VAO;

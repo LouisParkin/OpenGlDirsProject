@@ -47,8 +47,8 @@ bool LightingTechnique::Init(char* pVSFileName, char* pFSFileName)
         return false;
     }
 
-    m_WVPLocation = GetUniformLocation("gWVP");
-    m_LightWVPLocation = GetUniformLocation("gLightWVP");
+    m_WorldViewProjectionLocation = GetUniformLocation("gWVP");
+    m_LightWorldViewProjectionLocation = GetUniformLocation("gLightWVP");
     m_WorldMatrixLocation = GetUniformLocation("gWorld");
     m_samplerLocation = GetUniformLocation("gSampler");
     m_shadowMapLocation = GetUniformLocation("gShadowMap");
@@ -63,8 +63,8 @@ bool LightingTechnique::Init(char* pVSFileName, char* pFSFileName)
     m_numSpotLightsLocation = GetUniformLocation("gNumSpotLights");
 
     if (m_dirLightLocation.AmbientIntensity == INVALID_UNIFORM_LOCATION ||
-        m_WVPLocation == INVALID_UNIFORM_LOCATION ||
-        m_LightWVPLocation == INVALID_UNIFORM_LOCATION ||
+        m_WorldViewProjectionLocation == INVALID_UNIFORM_LOCATION ||
+        m_LightWorldViewProjectionLocation == INVALID_UNIFORM_LOCATION ||
         m_WorldMatrixLocation == INVALID_UNIFORM_LOCATION ||
         m_samplerLocation == INVALID_UNIFORM_LOCATION ||
         m_shadowMapLocation == INVALID_UNIFORM_LOCATION ||
@@ -162,15 +162,15 @@ bool LightingTechnique::Init(char* pVSFileName, char* pFSFileName)
 }
 
 
-void LightingTechnique::SetWVP(const Matrix4f& WVP)
+void LightingTechnique::SetWorldViewProjection(const Matrix4f& WorldViewProjection)
 {
-    glUniformMatrix4fv(m_WVPLocation, 1, GL_TRUE, (const GLfloat*)WVP.m);    
+    glUniformMatrix4fv(m_WorldViewProjectionLocation, 1, GL_TRUE, (const GLfloat*)WorldViewProjection.m);    
 }
 
 
-void LightingTechnique::SetLightWVP(const Matrix4f& LightWVP)
+void LightingTechnique::SetLightWorldViewProjection(const Matrix4f& LightWorldViewProjection)
 {
-    glUniformMatrix4fv(m_LightWVPLocation, 1, GL_TRUE, (const GLfloat*)LightWVP.m);
+    glUniformMatrix4fv(m_LightWorldViewProjectionLocation, 1, GL_TRUE, (const GLfloat*)LightWorldViewProjection.m);
 }
 
 

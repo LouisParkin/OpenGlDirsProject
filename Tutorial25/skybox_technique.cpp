@@ -45,10 +45,10 @@ bool SkyboxTechnique::Init(char* pVSFileName, char* pFSFileName)
         return false;
     }
 
-    m_WVPLocation = GetUniformLocation("gWVP");
+    m_WorldViewProjectionLocation = GetUniformLocation("gWVP");
     m_textureLocation = GetUniformLocation("gCubemapTexture");
  
-    if (m_WVPLocation == INVALID_UNIFORM_LOCATION ||
+    if (m_WorldViewProjectionLocation == INVALID_UNIFORM_LOCATION ||
         m_textureLocation == INVALID_UNIFORM_LOCATION) {
         return false;
     }
@@ -57,9 +57,9 @@ bool SkyboxTechnique::Init(char* pVSFileName, char* pFSFileName)
 }
 
 
-void SkyboxTechnique::SetWVP(const Matrix4f& WVP)
+void SkyboxTechnique::SetWorldViewProjection(const Matrix4f& WorldViewProjection)
 {
-    glUniformMatrix4fv(m_WVPLocation, 1, GL_TRUE, (const GLfloat*)WVP.m);    
+    glUniformMatrix4fv(m_WorldViewProjectionLocation, 1, GL_TRUE, (const GLfloat*)WorldViewProjection.m);    
 }
 
 

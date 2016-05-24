@@ -8,7 +8,7 @@ CONFIG -= qt
 QMAKE_CXXFLAGS += -std=c++0x -Wall -pedantic
 
 #  The version number greater than 16 to be added as option 'h' on the menu.
-TUT_VERSION = 23
+TUT_VERSION = 22
 
 # Add the menu-option 'h' as a compile-time define.
 TUT_DEFINE  = __TUT_VERSION=$$TUT_VERSION

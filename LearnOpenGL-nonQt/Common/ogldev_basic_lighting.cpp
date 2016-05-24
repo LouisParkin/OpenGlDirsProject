@@ -86,7 +86,7 @@ bool BasicLightingTechnique::Init(char* pVSFileName, char* pFSFileName)
     return false;
   }
 
-  m_WVPLocation = GetUniformLocation("gWVP");
+  m_WorldViewProjectionLocation = GetUniformLocation("gWVP");
   m_WorldMatrixLocation = GetUniformLocation("gWorld");
   m_colorTextureLocation = GetUniformLocation("gColorMap");
   m_eyeWorldPosLocation = GetUniformLocation("gEyeWorldPos");
@@ -100,7 +100,7 @@ bool BasicLightingTechnique::Init(char* pVSFileName, char* pFSFileName)
   m_numSpotLightsLocation = GetUniformLocation("gNumSpotLights");
 
   if (m_dirLightLocation.AmbientIntensity == INVALID_UNIFORM_LOCATION ||
-      m_WVPLocation == INVALID_UNIFORM_LOCATION ||
+      m_WorldViewProjectionLocation == INVALID_UNIFORM_LOCATION ||
       m_WorldMatrixLocation == INVALID_UNIFORM_LOCATION ||
       m_colorTextureLocation == INVALID_UNIFORM_LOCATION ||
       m_eyeWorldPosLocation == INVALID_UNIFORM_LOCATION ||
@@ -195,9 +195,9 @@ bool BasicLightingTechnique::Init(char* pVSFileName, char* pFSFileName)
   return true;
 }
 
-void BasicLightingTechnique::SetWVP(const Matrix4f& WVP)
+void BasicLightingTechnique::SetWorldViewProjection(const Matrix4f& WorldViewProjection)
 {
-  glUniformMatrix4fv(m_WVPLocation, 1, GL_TRUE, (const GLfloat*)WVP.m);
+  glUniformMatrix4fv(m_WorldViewProjectionLocation, 1, GL_TRUE, (const GLfloat*)WorldViewProjection.m);
 }
 
 

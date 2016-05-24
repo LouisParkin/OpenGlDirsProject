@@ -95,7 +95,7 @@ void SkyBox::Render()
     p.WorldPos(m_pCamera->GetPos().x, m_pCamera->GetPos().y, m_pCamera->GetPos().z);
     p.SetCamera(m_pCamera->GetPos(), m_pCamera->GetTarget(), m_pCamera->GetUp());
     p.SetPerspectiveProj(m_persProjInfo);
-    m_pSkyboxTechnique->SetWVP(p.GetWVPTrans());
+    m_pSkyboxTechnique->SetWorldViewProjection(p.GetWorldViewProjectionTrans());
     m_pCubemapTex->Bind(GL_TEXTURE0);
     m_pMesh->Render();  
     

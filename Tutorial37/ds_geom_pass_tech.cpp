@@ -45,11 +45,11 @@ bool DSGeomPassTech::Init(char* pVSFileName, char* pFSFileName)
     return false;
   }
 
-  m_WVPLocation = GetUniformLocation("gWVP");
+  m_WorldViewProjectionLocation = GetUniformLocation("gWVP");
   m_WorldMatrixLocation = GetUniformLocation("gWorld");
   m_colorTextureUnitLocation = GetUniformLocation("gColorMap");
 
-  if (m_WVPLocation == INVALID_UNIFORM_LOCATION ||
+  if (m_WorldViewProjectionLocation == INVALID_UNIFORM_LOCATION ||
       m_WorldMatrixLocation == INVALID_UNIFORM_LOCATION ||
       m_colorTextureUnitLocation == INVALID_UNIFORM_LOCATION) {
     return false;
@@ -59,9 +59,9 @@ bool DSGeomPassTech::Init(char* pVSFileName, char* pFSFileName)
 }
 
 
-void DSGeomPassTech::SetWVP(const Matrix4f& WVP)
+void DSGeomPassTech::SetWorldViewProjection(const Matrix4f& WorldViewProjection)
 {
-  glUniformMatrix4fv(m_WVPLocation, 1, GL_TRUE, (const GLfloat*)WVP.m);
+  glUniformMatrix4fv(m_WorldViewProjectionLocation, 1, GL_TRUE, (const GLfloat*)WorldViewProjection.m);
 }
 
 

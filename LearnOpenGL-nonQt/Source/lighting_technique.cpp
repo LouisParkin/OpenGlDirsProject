@@ -52,7 +52,7 @@ bool LightingTechnique::Init(char* pVSFileName, char* pFSFileName)
     return false;
   }
 
-  m_WVPLocation = GetUniformLocation("gWVP");
+  m_WorldViewProjectionLocation = GetUniformLocation("gWVP");
 
 
 #if __TUT_VERSION >= 18
@@ -70,7 +70,7 @@ bool LightingTechnique::Init(char* pVSFileName, char* pFSFileName)
   m_dirLightAmbientIntensityLocation = GetUniformLocation("gDirectionalLight.AmbientIntensity");
 
   if (m_dirLightAmbientIntensityLocation == 0xFFFFFFFF ||
-      m_WVPLocation == 0xFFFFFFFF ||
+      m_WorldViewProjectionLocation == 0xFFFFFFFF ||
       m_samplerLocation == 0xFFFFFFFF ||
       m_dirLightColorLocation == 0xFFFFFFFF) {
     return false;
@@ -99,7 +99,7 @@ bool LightingTechnique::Init(char* pVSFileName, char* pFSFileName)
   m_numSpotLightsLocation = GetUniformLocation("gNumSpotLights");
 
   if (m_dirLightLocation.AmbientIntensity == INVALID_UNIFORM_LOCATION ||
-      m_WVPLocation == INVALID_UNIFORM_LOCATION ||
+      m_WorldViewProjectionLocation == INVALID_UNIFORM_LOCATION ||
       m_WorldMatrixLocation == INVALID_UNIFORM_LOCATION ||
       m_samplerLocation == INVALID_UNIFORM_LOCATION ||
       m_eyeWorldPosLocation == INVALID_UNIFORM_LOCATION ||
@@ -121,7 +121,7 @@ bool LightingTechnique::Init(char* pVSFileName, char* pFSFileName)
 
 #if __TUT_VERSION <= 19
   if (m_dirLightLocation.AmbientIntensity == 0xFFFFFFFF ||
-      m_WVPLocation == 0xFFFFFFFF ||
+      m_WorldViewProjectionLocation == 0xFFFFFFFF ||
       m_WorldMatrixLocation == 0xFFFFFFFF ||
       m_samplerLocation == 0xFFFFFFFF ||
 
@@ -176,7 +176,7 @@ bool LightingTechnique::Init(char* pVSFileName, char* pFSFileName)
 
 #if __TUT_VERSION == 20
   if (m_dirLightLocation.AmbientIntensity == INVALID_UNIFORM_LOCATION ||
-      m_WVPLocation == INVALID_UNIFORM_LOCATION ||
+      m_WorldViewProjectionLocation == INVALID_UNIFORM_LOCATION ||
       m_WorldMatrixLocation == INVALID_UNIFORM_LOCATION ||
       m_samplerLocation == INVALID_UNIFORM_LOCATION ||
       m_eyeWorldPosLocation == INVALID_UNIFORM_LOCATION ||
@@ -242,9 +242,9 @@ bool LightingTechnique::Init(char* pVSFileName, char* pFSFileName)
 #endif
 }
 
-void LightingTechnique::SetWVP(const Matrix4f& WVP)
+void LightingTechnique::SetWorldViewProjection(const Matrix4f& WorldViewProjection)
 {
-  glUniformMatrix4fv(m_WVPLocation, 1, GL_TRUE, (const GLfloat*)WVP.m);
+  glUniformMatrix4fv(m_WorldViewProjectionLocation, 1, GL_TRUE, (const GLfloat*)WorldViewProjection.m);
 }
 
 #if __TUT_VERSION >= 18

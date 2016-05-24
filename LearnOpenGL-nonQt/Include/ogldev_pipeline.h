@@ -120,7 +120,7 @@ public:
     const Matrix4f& GetWPTrans();
     const Matrix4f& GetWVTrans();
     const Matrix4f& GetVPTrans();
-    const Matrix4f& GetWVPTrans();
+    const Matrix4f& GetWorldViewProjectionTrans();
     const Matrix4f& GetWVOrthoPTrans();
     const Matrix4f& GetWorldTrans();
     const Matrix4f& GetViewTrans();
@@ -140,7 +140,7 @@ private:
         Vector3f Up;
     } m_camera;
 
-    Matrix4f m_WVPtransformation;
+    Matrix4f m_WorldViewProjectiontransformation;
     Matrix4f m_VPtransformation;
     Matrix4f m_WPtransformation;
     Matrix4f m_WVtransformation;

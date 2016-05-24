@@ -36,9 +36,9 @@ public:
 
     virtual bool Init(char* pVSFileName, char* pFSFileName);
 
-    void SetWVP(const Matrix4f& WVP);
-    void SetLightWVP(const Matrix4f& LightWVP);
-    void SetWorldMatrix(const Matrix4f& WVP);
+    void SetWorldViewProjection(const Matrix4f& WorldViewProjection);
+    void SetLightWorldViewProjection(const Matrix4f& LightWorldViewProjection);
+    void SetWorldMatrix(const Matrix4f& WorldViewProjection);
     void SetTextureUnit(unsigned int TextureUnit);
     void SetShadowMapTextureUnit(unsigned int TextureUnit);
     void SetDirectionalLight(const DirectionalLight& Light);
@@ -50,8 +50,8 @@ public:
 
 private:
 
-    GLuint m_WVPLocation;
-    GLuint m_LightWVPLocation;
+    GLuint m_WorldViewProjectionLocation;
+    GLuint m_LightWorldViewProjectionLocation;
     GLuint m_WorldMatrixLocation;
     GLuint m_samplerLocation;
     GLuint m_shadowMapLocation;

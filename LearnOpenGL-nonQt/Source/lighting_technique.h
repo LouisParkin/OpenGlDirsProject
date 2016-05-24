@@ -106,10 +106,10 @@ public:
 
   virtual bool Init(char* pVSFileName, char* pFSFileName);
 
-  void SetWVP(const Matrix4f& WVP);
+  void SetWorldViewProjection(const Matrix4f& WorldViewProjection);
 
 #if __TUT_VERSION >= 18  // #4
-  void SetWorldMatrix(const Matrix4f& WVP);
+  void SetWorldMatrix(const Matrix4f& WorldViewProjection);
 #endif // #4
 
   void SetTextureUnit(unsigned int TextureUnit);
@@ -131,7 +131,7 @@ public:
 
 private:
 
-  GLuint m_WVPLocation;
+  GLuint m_WorldViewProjectionLocation;
 #if __TUT_VERSION >= 18  // #6
   GLuint m_WorldMatrixLocation;
 #endif // #6

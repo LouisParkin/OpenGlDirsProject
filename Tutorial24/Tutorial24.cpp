@@ -162,7 +162,7 @@ public:
         p.WorldPos(0.0f, 0.0f, 3.0f);
         p.SetCamera(m_spotLight.Position, m_spotLight.Direction, Vector3f(0.0f, 1.0f, 0.0f));
         p.SetPerspectiveProj(m_persProjInfo);
-        m_pShadowMapEffect->SetWVP(p.GetWVPTrans());
+        m_pShadowMapEffect->SetWorldViewProjection(p.GetWorldViewProjectionTrans());
         m_pMesh->Render();
         
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
@@ -186,10 +186,10 @@ public:
         p.WorldPos(0.0f, 0.0f, 1.0f);
         p.Rotate(90.0f, 0.0f, 0.0f);
         p.SetCamera(m_pGameCamera->GetPos(), m_pGameCamera->GetTarget(), m_pGameCamera->GetUp());
-        m_pLightingEffect->SetWVP(p.GetWVPTrans());
+        m_pLightingEffect->SetWorldViewProjection(p.GetWorldViewProjectionTrans());
         m_pLightingEffect->SetWorldMatrix(p.GetWorldTrans());        
         p.SetCamera(m_spotLight.Position, m_spotLight.Direction, Vector3f(0.0f, 1.0f, 0.0f));
-        m_pLightingEffect->SetLightWVP(p.GetWVPTrans());
+        m_pLightingEffect->SetLightWorldViewProjection(p.GetWorldViewProjectionTrans());
         m_pGroundTex->Bind(GL_TEXTURE0);
         m_pQuad->Render();
  
@@ -197,10 +197,10 @@ public:
         p.Rotate(0.0f, m_scale, 0.0f);
         p.WorldPos(0.0f, 0.0f, 3.0f);
         p.SetCamera(m_pGameCamera->GetPos(), m_pGameCamera->GetTarget(), m_pGameCamera->GetUp());
-        m_pLightingEffect->SetWVP(p.GetWVPTrans());
+        m_pLightingEffect->SetWorldViewProjection(p.GetWorldViewProjectionTrans());
         m_pLightingEffect->SetWorldMatrix(p.GetWorldTrans());
         p.SetCamera(m_spotLight.Position, m_spotLight.Direction, Vector3f(0.0f, 1.0f, 0.0f));
-        m_pLightingEffect->SetLightWVP(p.GetWVPTrans());
+        m_pLightingEffect->SetLightWorldViewProjection(p.GetWorldViewProjectionTrans());
         m_pMesh->Render();        
     }
 

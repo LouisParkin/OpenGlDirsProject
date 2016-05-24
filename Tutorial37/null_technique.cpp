@@ -44,9 +44,9 @@ bool NullTechnique::Init(char* pVSFileName, char* pFSFileName)
     return false;
   }
 
-  m_WVPLocation = GetUniformLocation("gWVP");
+  m_WorldViewProjectionLocation = GetUniformLocation("gWVP");
 
-  if (m_WVPLocation == INVALID_UNIFORM_LOCATION) {
+  if (m_WorldViewProjectionLocation == INVALID_UNIFORM_LOCATION) {
     return false;
   }
 
@@ -54,8 +54,8 @@ bool NullTechnique::Init(char* pVSFileName, char* pFSFileName)
 }
 
 
-void NullTechnique::SetWVP(const Matrix4f& WVP)
+void NullTechnique::SetWorldViewProjection(const Matrix4f& WorldViewProjection)
 {
-  glUniformMatrix4fv(m_WVPLocation, 1, GL_TRUE, (const GLfloat*)WVP.m);
+  glUniformMatrix4fv(m_WorldViewProjectionLocation, 1, GL_TRUE, (const GLfloat*)WorldViewProjection.m);
 }
 

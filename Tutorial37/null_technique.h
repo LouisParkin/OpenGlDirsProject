@@ -28,11 +28,11 @@ public:
 
     virtual bool Init(char* pVSFileName, char* pFSFileName);
 
-    void SetWVP(const Matrix4f& WVP);
+    void SetWorldViewProjection(const Matrix4f& WorldViewProjection);
 
 private:
 
-    GLuint m_WVPLocation;
+    GLuint m_WorldViewProjectionLocation;
 };
 
 

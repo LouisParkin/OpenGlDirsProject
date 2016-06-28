@@ -1,5 +1,8 @@
 #include "Tutorial.h"
 
+#define MS_OFF false
+#define MS_ON true
+
 GLuint Tutorial::_VBO;
 GLuint Tutorial::_IBO;
 
@@ -23,6 +26,8 @@ int Tutorial::_tutorialID;
 
 GLuint   Tutorial::_gSampler;
 Texture* Tutorial::_pTexture = NULL;
+
+bool Tutorial::_msOnOff = MS_OFF;
 
 /// If the tutorial version for option 'h' was defined to be
 /// above or equal to 17, a separate class object is needed.
@@ -83,6 +88,10 @@ Tutorial::Tutorial(int tutorialId, int* argc, char* argv[])
 //  sprintf(pVSFileName, "/home/llouis/Projects/OpenGlDirsProject/LearnOpenGL-nonQtShaders/Tutorial%d/shader.vs", _tutorialID);
 //  sprintf(pFSFileName, "/home/llouis/Projects/OpenGlDirsProject/LearnOpenGL-nonQtShaders/Tutorial%d/shader.fs", _tutorialID);
     glutInit(argc, argv);
+    if (_tutorialID == 7 || _tutorialID == 16) {
+      glutSetOption(GLUT_MULTISAMPLE, 8);
+      glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_MULTISAMPLE);
+    }
   }
   else if (_tutorialID >= 17 && _tutorialID <= 23) {
     bool withDepth = false;
@@ -308,7 +317,7 @@ std::function<void ()> Tutorial::makeDisplayFunc()
       static float scale = 0.0f;
 
       /// increment scale by 0.001.
-      scale += 0.001f;
+      scale += 0.00001f;
 
       /// glUniform1f provides a value for the Uniform attribute of the shader.
       /// In this example, sin(scale).
@@ -335,7 +344,7 @@ std::function<void ()> Tutorial::makeDisplayFunc()
       static float scale = 0.0f;
 
       /// increment scale by 0.001.
-      scale += 0.001f;
+      scale += 0.00001f;
 
       Matrix4f world;
 
@@ -371,12 +380,28 @@ std::function<void ()> Tutorial::makeDisplayFunc()
   case 7:
     return [ & ]() {
       glClear(GL_COLOR_BUFFER_BIT);
+      glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+
+      if (_msOnOff) {
+        glEnable(GL_MULTISAMPLE_ARB);
+        glHint(GL_MULTISAMPLE_FILTER_HINT_NV, GL_NICEST);
+
+        // detect current settings
+        GLint iMultiSample = 0;
+        GLint iNumSamples = 0;
+        glGetIntegerv(GL_SAMPLE_BUFFERS, &iMultiSample);
+        glGetIntegerv(GL_SAMPLES, &iNumSamples);
+//        printf("MSAA on, GL_SAMPLE_BUFFERS = %d, GL_SAMPLES = %d\n", iMultiSample, iNumSamples);
+      }
+      else {
+        glDisable(GL_MULTISAMPLE_ARB);
+      }
 
       /// allocate a static variable scale
       static float scale = 0.0f;
 
       /// increment scale by 0.001.
-      scale += 0.001f;
+      scale += 0.0005f;
 
       Matrix4f world;
 
@@ -407,7 +432,7 @@ std::function<void ()> Tutorial::makeDisplayFunc()
       glBindBuffer(GL_ARRAY_BUFFER, _VBO);
       glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
 
-      glDrawArrays(GL_TRIANGLES, 0, 3);
+      glDrawArrays(GL_TRIANGLES, 0, 6);
 
       glDisableVertexAttribArray(0);
 
@@ -719,11 +744,18 @@ std::function<void ()> Tutorial::makeDisplayFunc()
 
       glClear(GL_COLOR_BUFFER_BIT);
 
+      if (_msOnOff) {
+        glEnable(GL_MULTISAMPLE_ARB);
+      }
+      else {
+        glDisable(GL_MULTISAMPLE_ARB);
+      }
+
       /// allocate a static variable scale
       static float scale = 0.0f;
 
       /// increment scale by 0.001.
-      scale += 0.01f;
+      scale += 0.05f;
 
       Pipeline pipeLine;
       pipeLine.Rotate(0.0f, scale, 0.0f);
@@ -887,6 +919,10 @@ std::function<void (int, int, int)> Tutorial::makeKeyboardFunc()
       case 'q':
         glutLeaveMainLoop();
         break;
+      case 'm':
+        _msOnOff = !_msOnOff;
+        glutPostRedisplay();
+        break;
       }
     };
   }
@@ -980,6 +1016,28 @@ std::function<void (void)> Tutorial::makeCreateVertexBufferFunc(GLuint& vertexOb
   case 5:
   case 6:
   case 7:
+    return [ & ]() {
+      /// Vector3f is a composite data type that consists of an x, y, and z coordinate.
+      /// Vertices is an array of three coordinates.
+      Vector3f Vertices[6];
+      Vertices[0] = Vector3f(-1.0f, -1.0f, 0.0f);
+      Vertices[1] = Vector3f(1.0f, -1.0f, 0.0f);
+      Vertices[2] = Vector3f(0.0f, 1.0f, 0.0f);
+      Vertices[3] = Vector3f(1.0f, 1.0f, 0.0f);
+      Vertices[4] = Vector3f(-1.0f, 1.0f, 0.0f);
+      Vertices[5] = Vector3f(0.0f, -1.0f, 0.0f);
+
+
+      /// vertexObjectBuffer is a member GLuint that points to the vertex shader buffer (VBO = vertex buffer object)
+      /// glGenBuffers makes the space available fort allocating to vertexObjectBuffer
+      glGenBuffers(1, &vertexObjectBuffer);
+
+      /// glBindBuffer attaches the buffer (vertexObjectBuffer) as a space to be used for Arrayed buffer storage.
+      glBindBuffer(GL_ARRAY_BUFFER, vertexObjectBuffer);
+
+      /// glBufferData presents Vertices as the data location from where vertex data will be obtained.
+      glBufferData(GL_ARRAY_BUFFER, sizeof(Vertices), Vertices, GL_STATIC_DRAW);
+    };
   case 8:
   case 9:
     return [ & ]() {

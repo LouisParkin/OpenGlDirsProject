@@ -110,6 +110,8 @@ private:
   static std::function<void (int, int, int)>               makeSpecialFunc();
   static std::function<void (int, int, int)>               makeKeyboardFunc();
   static std::function<void (int, int)>                    makePassiveMouseFunc();
+
+  static bool _msOnOff;
 };
 
 #endif // TUTORIAL_H

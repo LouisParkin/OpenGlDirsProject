@@ -16,7 +16,7 @@
 */
 
 #ifndef GBUFFER_H
-#define	GBUFFER_H
+#define  GBUFFER_H
 
 #include <GL/glew.h>
 
@@ -28,12 +28,12 @@ class GBuffer
 {
 public:
 
-	enum GBUFFER_TEXTURE_TYPE {
-		GBUFFER_TEXTURE_TYPE_POSITION,
-		GBUFFER_TEXTURE_TYPE_DIFFUSE,
-		GBUFFER_TEXTURE_TYPE_NORMAL,
-		GBUFFER_NUM_TEXTURES
-	};
+  enum GBUFFER_TEXTURE_TYPE {
+    GBUFFER_TEXTURE_TYPE_POSITION,
+    GBUFFER_TEXTURE_TYPE_DIFFUSE,
+    GBUFFER_TEXTURE_TYPE_NORMAL,
+    GBUFFER_NUM_TEXTURES
+  };
 
     GBuffer();
 
@@ -52,5 +52,5 @@ private:
     GLuint m_depthTexture;
 };
 
-#endif	/* SHADOWMAPFBO_H */
+#endif  /* SHADOWMAPFBO_H */
 

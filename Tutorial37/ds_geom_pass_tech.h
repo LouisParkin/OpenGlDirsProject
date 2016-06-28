@@ -16,7 +16,7 @@
 */
 
 #ifndef DS_GEOM_PASS_TECH_H
-#define	DS_GEOM_PASS_TECH_H
+#define  DS_GEOM_PASS_TECH_H
 
 #include "technique.h"
 #include "ogldev_math_3d.h"
@@ -30,13 +30,13 @@ public:
 
     void SetWorldViewProjection(const Matrix4f& WorldViewProjection);
     void SetWorldMatrix(const Matrix4f& WorldViewProjection);
-	void SetColorTextureUnit(unsigned int TextureUnit);
+  void SetColorTextureUnit(unsigned int TextureUnit);
 
 private:
 
     GLuint m_WorldViewProjectionLocation;
     GLuint m_WorldMatrixLocation;
-	GLuint m_colorTextureUnitLocation;
+  GLuint m_colorTextureUnitLocation;
 };
 
 

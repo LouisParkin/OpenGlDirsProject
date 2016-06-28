@@ -1,6 +1,6 @@
 /*
 
-	Copyright 2014 Etay Meiri
+  Copyright 2014 Etay Meiri
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 */
 
 #ifndef OGLDEV_GLFW_BACKEND_H
-#define	OGLDEV_GLFW_BACKEND_H
+#define  OGLDEV_GLFW_BACKEND_H
 
 #include "ogldev_types.h"
 #include "ogldev_callbacks.h"

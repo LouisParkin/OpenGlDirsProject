@@ -1,6 +1,6 @@
 /*
 
-	Copyright 2011 Etay Meiri
+  Copyright 2011 Etay Meiri
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 */
 
 #ifndef GLUT_BACKEND_H
-#define	GLUT_BACKEND_H
+#define  GLUT_BACKEND_H
 
 #include "ogldev_types.h"
 #include "ogldev_callbacks.h"
@@ -47,5 +47,5 @@ struct Attempt
 
 OGLDEV_KEY GLUTKeyToOGLDEVKey(uint Key);
 
-#endif	/* GLUT_BACKEND_H */
+#endif  /* GLUT_BACKEND_H */
 

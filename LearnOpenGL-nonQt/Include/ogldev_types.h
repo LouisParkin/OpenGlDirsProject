@@ -1,6 +1,6 @@
 /*
 
-	Copyright 2011 Etay Meiri
+  Copyright 2011 Etay Meiri
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 */
 
 #ifndef OGLDEV_TYPES_H
-#define	OGLDEV_TYPES_H
+#define  OGLDEV_TYPES_H
 
 #ifndef WIN32
 #include <unistd.h>
@@ -27,5 +27,5 @@ typedef unsigned int uint;
 typedef unsigned short ushort;
 typedef unsigned char uchar;
 
-#endif	/* OGLDEV_TYPES_H */
+#endif  /* OGLDEV_TYPES_H */
 

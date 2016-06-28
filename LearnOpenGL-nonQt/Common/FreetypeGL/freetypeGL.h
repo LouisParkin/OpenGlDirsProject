@@ -32,7 +32,7 @@
  * ========================================================================= */
 
 #ifndef FREETYPEGL_H
-#define	FREETYPEGL_H
+#define  FREETYPEGL_H
 
 #include <GL/glew.h>
 #if defined(__APPLE__)
@@ -70,5 +70,5 @@ private:
 };
 
 
-#endif	/* FREETYPEGL_H */
+#endif  /* FREETYPEGL_H */
 

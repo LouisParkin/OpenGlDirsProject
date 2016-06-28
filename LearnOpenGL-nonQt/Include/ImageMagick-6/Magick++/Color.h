@@ -28,12 +28,12 @@ namespace Magick
   {
   public:
     Color ( Quantum red_,
-	    Quantum green_,
-	    Quantum blue_ );
+      Quantum green_,
+      Quantum blue_ );
     Color ( Quantum red_,
-	    Quantum green_,
-	    Quantum blue_,
-	    Quantum alpha_ );
+      Quantum green_,
+      Quantum blue_,
+      Quantum alpha_ );
     Color ( const std::string &x11color_ );
     Color ( const char * x11color_ );
     Color ( void );
@@ -165,7 +165,7 @@ namespace Magick
     bool                       _isValid;
 
     // Color type supported by _pixel
-    PixelType			_pixelType;
+    PixelType      _pixelType;
 
   };
 

@@ -1,6 +1,6 @@
 /*
 
-	Copyright 2010 Etay Meiri
+  Copyright 2010 Etay Meiri
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 */
 
 #ifndef MATH_3D_H
-#define	MATH_3D_H
+#define  MATH_3D_H
 
 #include <stdio.h>
 #ifdef WIN32
@@ -365,5 +365,5 @@ Quaternion operator*(const Quaternion& l, const Quaternion& r);
 
 Quaternion operator*(const Quaternion& q, const Vector3f& v);
 
-#endif	/* MATH_3D_H */
+#endif  /* MATH_3D_H */
 

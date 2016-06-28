@@ -32,7 +32,7 @@ extern "C" {
 
 #if (__GNUC__ > 4) || ((__GNUC__ == 4) && (__GNUC_MINOR__ > 6))
 #define MagickAssumeAligned(address) \
-	__builtin_assume_aligned((address),CACHE_LINE_SIZE)
+  __builtin_assume_aligned((address),CACHE_LINE_SIZE)
 #else
 #define MagickAssumeAligned(address)  (address)
 #endif

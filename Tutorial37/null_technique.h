@@ -16,7 +16,7 @@
 */
 
 #ifndef NULL_TECHNIQUE_H
-#define	NULL_TECHNIQUE_H
+#define  NULL_TECHNIQUE_H
 
 #include "technique.h"
 #include "ogldev_math_3d.h"

@@ -16,11 +16,11 @@
 #include <windows.h>
 #if defined(_MT)
 struct win32_mutex {
-	HANDLE id;
+  HANDLE id;
 };
 
 // This is a binary semphore -- increase for a counting semaphore
-#define MAXSEMLEN	1
+#define MAXSEMLEN  1
 #endif // defined(_MT)
 #endif // defined(_VISUALC_)
 

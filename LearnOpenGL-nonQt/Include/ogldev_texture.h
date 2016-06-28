@@ -1,6 +1,6 @@
 /*
 
-	Copyright 2011 Etay Meiri
+  Copyright 2011 Etay Meiri
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 */
 
 #ifndef TEXTURE_H
-#define	TEXTURE_H
+#define  TEXTURE_H
 
 #include <string>
 
@@ -42,5 +42,5 @@ private:
 };
 
 
-#endif	/* TEXTURE_H */
+#endif  /* TEXTURE_H */
 

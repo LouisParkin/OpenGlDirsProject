@@ -1,5 +1,5 @@
 /*
-	Copyright 2010 Etay Meiri
+  Copyright 2010 Etay Meiri
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -16,7 +16,7 @@
 */
 
 #ifndef PIPELINE_H
-#define	PIPELINE_H
+#define  PIPELINE_H
 
 #include "ogldev_math_3d.h"
 #include "ogldev_camera.h"
@@ -150,5 +150,5 @@ private:
 };
 
 
-#endif	/* PIPELINE_H */
+#endif  /* PIPELINE_H */
 

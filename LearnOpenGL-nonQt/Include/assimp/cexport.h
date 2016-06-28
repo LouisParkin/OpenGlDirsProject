@@ -63,17 +63,17 @@ struct aiFileIO; // aiFileIO.h
 */
 struct aiExportFormatDesc
 {
-	/// a short string ID to uniquely identify the export format. Use this ID string to 
-	/// specify which file format you want to export to when calling #aiExportScene().
-	/// Example: "dae" or "obj"
-	const char* id; 
+  /// a short string ID to uniquely identify the export format. Use this ID string to 
+  /// specify which file format you want to export to when calling #aiExportScene().
+  /// Example: "dae" or "obj"
+  const char* id; 
 
-	/// A short description of the file format to present to users. Useful if you want
-	/// to allow the user to select an export format.
-	const char* description;
+  /// A short description of the file format to present to users. Useful if you want
+  /// to allow the user to select an export format.
+  const char* description;
 
-	/// Recommended file extension for the exported file in lower case. 
-	const char* fileExtension;
+  /// Recommended file extension for the exported file in lower case. 
+  const char* fileExtension;
 };
 
 
@@ -103,7 +103,7 @@ ASSIMP_API const C_STRUCT aiExportFormatDesc* aiGetExportFormatDescription( size
  *  @param pOut Receives a modifyable copy of the scene.
  */
 ASSIMP_API void aiCopyScene(const C_STRUCT aiScene* pIn, 
-	C_STRUCT aiScene** pOut);
+  C_STRUCT aiScene** pOut);
 
 // --------------------------------------------------------------------------------
 /** Exports the given scene to a chosen file format and writes the result file(s) to disk.
@@ -140,9 +140,9 @@ ASSIMP_API void aiCopyScene(const C_STRUCT aiScene* pIn,
 * @return a status code indicating the result of the export
 */
 ASSIMP_API aiReturn aiExportScene( const C_STRUCT aiScene* pScene, 
-	const char* pFormatId, 
-	const char* pFileName,  
-	unsigned int pPreprocessing);
+  const char* pFormatId, 
+  const char* pFileName,  
+  unsigned int pPreprocessing);
 
 
 // --------------------------------------------------------------------------------
@@ -159,10 +159,10 @@ ASSIMP_API aiReturn aiExportScene( const C_STRUCT aiScene* pScene,
 * @note Include <aiFileIO.h> for the definition of #aiFileIO.
 */
 ASSIMP_API aiReturn aiExportSceneEx( const C_STRUCT aiScene* pScene, 
-	const char* pFormatId, 
-	const char* pFileName, 
-	C_STRUCT aiFileIO* pIO,  
-	unsigned int pPreprocessing );
+  const char* pFormatId, 
+  const char* pFileName, 
+  C_STRUCT aiFileIO* pIO,  
+  unsigned int pPreprocessing );
 
 
 // --------------------------------------------------------------------------------
@@ -177,39 +177,39 @@ ASSIMP_API aiReturn aiExportSceneEx( const C_STRUCT aiScene* pScene,
 */
 struct aiExportDataBlob 
 {
-	/// Size of the data in bytes
-	size_t size;
+  /// Size of the data in bytes
+  size_t size;
 
-	/// The data. 
-	void* data;
+  /// The data. 
+  void* data;
 
-	/** Name of the blob. An empty string always
-	    indicates the first (and primary) blob,
-	    which contains the actual file data.
+  /** Name of the blob. An empty string always
+      indicates the first (and primary) blob,
+      which contains the actual file data.
         Any other blobs are auxiliary files produced
-	    by exporters (i.e. material files). Existence
-	    of such files depends on the file format. Most
-	    formats don't split assets across multiple files.
+      by exporters (i.e. material files). Existence
+      of such files depends on the file format. Most
+      formats don't split assets across multiple files.
 
-		If used, blob names usually contain the file
-		extension that should be used when writing 
-		the data to disc.
-	 */
-	aiString name;
+    If used, blob names usually contain the file
+    extension that should be used when writing 
+    the data to disc.
+   */
+  aiString name;
 
-	/** Pointer to the next blob in the chain or NULL if there is none. */
-	aiExportDataBlob * next;
+  /** Pointer to the next blob in the chain or NULL if there is none. */
+  aiExportDataBlob * next;
 
 #ifdef __cplusplus
-	/// Default constructor
-	aiExportDataBlob() { size = 0; data = next = NULL; }
-	/// Releases the data
-	~aiExportDataBlob() { delete [] static_cast<unsigned char*>( data ); delete next; }
+  /// Default constructor
+  aiExportDataBlob() { size = 0; data = next = NULL; }
+  /// Releases the data
+  ~aiExportDataBlob() { delete [] static_cast<unsigned char*>( data ); delete next; }
 
 private:
-	// no copying
-	aiExportDataBlob(const aiExportDataBlob& );
-	aiExportDataBlob& operator= (const aiExportDataBlob& );
+  // no copying
+  aiExportDataBlob(const aiExportDataBlob& );
+  aiExportDataBlob& operator= (const aiExportDataBlob& );
 #endif // __cplusplus
 };
 

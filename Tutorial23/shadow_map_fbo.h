@@ -16,7 +16,7 @@
 */
 
 #ifndef SHADOWMAPFBO_H
-#define	SHADOWMAPFBO_H
+#define  SHADOWMAPFBO_H
 
 #include <GL/glew.h>
 
@@ -38,5 +38,5 @@ private:
     GLuint m_shadowMap;
 };
 
-#endif	/* SHADOWMAPFBO_H */
+#endif  /* SHADOWMAPFBO_H */
 

@@ -1,6 +1,6 @@
 /*
 
-	Copyright 2011 Etay Meiri
+  Copyright 2011 Etay Meiri
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -82,7 +82,7 @@ bool BasicMesh::LoadMesh(const string& Filename)
     }
 
     // Make sure the VAO is not changed from the outside
-    glBindVertexArray(0);	
+    glBindVertexArray(0);  
 
     return Ret;
 }
@@ -276,7 +276,7 @@ void BasicMesh::Render(unsigned int NumInstances, const Matrix4f* WorldViewProje
             m_Textures[MaterialIndex]->Bind(GL_TEXTURE0);
         }
 
-		glDrawElementsInstancedBaseVertex(GL_TRIANGLES, 
+    glDrawElementsInstancedBaseVertex(GL_TRIANGLES, 
                                           m_Entries[i].NumIndices, 
                                           GL_UNSIGNED_INT, 
                                           (void*)(sizeof(unsigned int) * m_Entries[i].BaseIndex), 

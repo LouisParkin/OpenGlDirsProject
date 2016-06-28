@@ -1,6 +1,6 @@
 /*
 
-	Copyright 2011 Etay Meiri
+  Copyright 2011 Etay Meiri
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 */
 
 #ifndef OGLDEV_BASIC_MESH_H
-#define	OGLDEV_BASIC_MESH_H
+#define  OGLDEV_BASIC_MESH_H
 
 #include <map>
 #include <vector>
@@ -58,7 +58,7 @@ public:
     bool LoadMesh(const std::string& Filename);
 
     void Render();
-	
+  
     void Render(unsigned int NumInstances, const Matrix4f* WorldViewProjectionMats, const Matrix4f* WorldMats);
     
     Orientation& GetOrientation() { return m_orientation; }
@@ -96,7 +96,7 @@ private:
         }
         
         unsigned int NumIndices;
-	unsigned int BaseVertex;
+  unsigned int BaseVertex;
         unsigned int BaseIndex;
         unsigned int MaterialIndex;
     };
@@ -107,5 +107,5 @@ private:
 };
 
 
-#endif	/* OGLDEV_BASIC_MESH_H */
+#endif  /* OGLDEV_BASIC_MESH_H */
 

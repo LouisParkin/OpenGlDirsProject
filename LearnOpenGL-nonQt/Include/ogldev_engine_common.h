@@ -1,6 +1,6 @@
 /*
 
-	Copyright 2014 Etay Meiri
+  Copyright 2014 Etay Meiri
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 */
 
 #ifndef OGLDEV_ENGINE_COMMON_H
-#define	OGLDEV_ENGINE_COMMON_H
+#define  OGLDEV_ENGINE_COMMON_H
 
 #define COLOR_TEXTURE_UNIT              GL_TEXTURE0
 #define COLOR_TEXTURE_UNIT_INDEX        0
@@ -39,5 +39,5 @@
 #define CASCACDE_SHADOW_TEXTURE_UNIT2_INDEX 7
 
 
-#endif	/* OGLDEV_ENGINE_COMMON_H */
+#endif  /* OGLDEV_ENGINE_COMMON_H */
 

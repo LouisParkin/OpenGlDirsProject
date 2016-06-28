@@ -32,7 +32,7 @@
  * ========================================================================= */
 
 #ifndef SHADERS_H
-#define	SHADERS_H
+#define  SHADERS_H
 
 #include <GL/glew.h>
 
@@ -59,5 +59,5 @@ private:
 };
 
 
-#endif	/* SHADERS_H */
+#endif  /* SHADERS_H */
 

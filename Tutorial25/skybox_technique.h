@@ -16,7 +16,7 @@
 */
 
 #ifndef SKYBOX_TECHNIQUE_H
-#define	SKYBOX_TECHNIQUE_H
+#define  SKYBOX_TECHNIQUE_H
 
 #include "technique.h"
 #include "ogldev_math_3d.h"
@@ -39,4 +39,4 @@ private:
 };
 
 
-#endif	/* SKYBOX_TECHNIQUE_H */
+#endif  /* SKYBOX_TECHNIQUE_H */

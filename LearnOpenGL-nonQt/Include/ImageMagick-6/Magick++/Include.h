@@ -855,7 +855,7 @@ namespace Magick
   using MagickCore::PingBlob;
   using MagickCore::PingImage;
   using MagickCore::PixelSetQuantumColor;
-	using MagickCore::PixelWand;
+  using MagickCore::PixelWand;
   using MagickCore::PointInfo;
   using MagickCore::PopDrawingWand;
   using MagickCore::ProfileImage;

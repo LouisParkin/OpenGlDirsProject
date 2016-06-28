@@ -1,6 +1,6 @@
 /*
 
-	Copyright 2011 Etay Meiri
+  Copyright 2011 Etay Meiri
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -153,23 +153,23 @@ public:
         glutSwapBuffers();
     }
 
-	void KeyboardCB(OGLDEV_KEY OgldevKey)
-	{
-		switch (OgldevKey) {
-		case OGLDEV_KEY_ESCAPE:
-		case OGLDEV_KEY_q:
-			GLUTBackendLeaveMainLoop();
-			break;
-		default:
-			m_pGameCamera->OnKeyboard(OgldevKey);
-		}
-	}
+  void KeyboardCB(OGLDEV_KEY OgldevKey)
+  {
+    switch (OgldevKey) {
+    case OGLDEV_KEY_ESCAPE:
+    case OGLDEV_KEY_q:
+      GLUTBackendLeaveMainLoop();
+      break;
+    default:
+      m_pGameCamera->OnKeyboard(OgldevKey);
+    }
+  }
 
 
-	virtual void PassiveMouseCB(int x, int y)
-	{
-		m_pGameCamera->OnMouse(x, y);
-	}
+  virtual void PassiveMouseCB(int x, int y)
+  {
+    m_pGameCamera->OnMouse(x, y);
+  }
     
     
 private:

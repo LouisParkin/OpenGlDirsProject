@@ -71,7 +71,7 @@ bool IOBuffer::Init(uint WindowWidth, uint WindowHeight, bool WithDepth, GLenum 
     
     // Create the FBO
     glGenFramebuffers(1, &m_fbo);    
-	glBindFramebuffer(GL_FRAMEBUFFER, m_fbo);
+  glBindFramebuffer(GL_FRAMEBUFFER, m_fbo);
 
     // Create the textures
     if (InternalType != GL_NONE) {
@@ -85,7 +85,7 @@ bool IOBuffer::Init(uint WindowWidth, uint WindowHeight, bool WithDepth, GLenum 
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);        
         glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_texture, 0);
 
-    	GLenum DrawBuffers[] = { GL_COLOR_ATTACHMENT0 };
+      GLenum DrawBuffers[] = { GL_COLOR_ATTACHMENT0 };
 
         glDrawBuffers(ARRAY_SIZE_IN_ELEMENTS(DrawBuffers), DrawBuffers);
     }
@@ -111,8 +111,8 @@ bool IOBuffer::Init(uint WindowWidth, uint WindowHeight, bool WithDepth, GLenum 
         return false;
     }
 
-	// restore default FBO
-	glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
+  // restore default FBO
+  glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
 
     return true;
 }

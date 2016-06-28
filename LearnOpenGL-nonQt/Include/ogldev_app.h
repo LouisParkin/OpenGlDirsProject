@@ -1,6 +1,6 @@
 /*
 
-	Copyright 2014 Etay Meiri
+  Copyright 2014 Etay Meiri
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -27,22 +27,22 @@
 class OgldevApp
 {
 protected:
-	OgldevApp();
+  OgldevApp();
 
-	void CalcFPS();
+  void CalcFPS();
 
-	void RenderFPS();
+  void RenderFPS();
 
-	float GetRunningTime();
+  float GetRunningTime();
 
 protected:
 #ifndef WIN32
   FontRenderer m_fontRenderer;
 #endif
 private:
-	long long m_frameTime;
-	long long m_startTime;
-	int m_frameCount;
+  long long m_frameTime;
+  long long m_startTime;
+  int m_frameCount;
         int m_fps;
 };
 

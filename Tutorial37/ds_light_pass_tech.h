@@ -16,7 +16,7 @@
 */
 
 #ifndef TUT37_DS_LIGHT_PASS_TECH_H
-#define	TUT37_DS_LIGHT_PASS_TECH_H
+#define  TUT37_DS_LIGHT_PASS_TECH_H
 
 #include <string>
 

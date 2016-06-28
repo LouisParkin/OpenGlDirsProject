@@ -1,6 +1,6 @@
 /*
 
-	Copyright 2011 Etay Meiri
+  Copyright 2011 Etay Meiri
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 */
 
 #ifndef MESH_H
-#define	MESH_H
+#define  MESH_H
 
 #include <map>
 #include <vector>
@@ -71,7 +71,7 @@ private:
 
         ~MeshEntry();
 
-		void Init(const std::vector<Vertex>& Vertices,
+    void Init(const std::vector<Vertex>& Vertices,
                   const std::vector<unsigned int>& Indices);
 
         GLuint VB;
@@ -85,5 +85,5 @@ private:
 };
 
 
-#endif	/* MESH_H */
+#endif  /* MESH_H */
 

@@ -1,6 +1,6 @@
 /*
 
-	Copyright 2011 Etay Meiri
+  Copyright 2011 Etay Meiri
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -30,18 +30,18 @@ DSLightPassTech::DSLightPassTech()
 bool DSLightPassTech::Init()
 {
     m_WorldViewProjectionLocation = GetUniformLocation("gWVP");
-	m_posTextureUnitLocation = GetUniformLocation("gPositionMap");
-	m_colorTextureUnitLocation = GetUniformLocation("gColorMap");
-	m_normalTextureUnitLocation = GetUniformLocation("gNormalMap");
+  m_posTextureUnitLocation = GetUniformLocation("gPositionMap");
+  m_colorTextureUnitLocation = GetUniformLocation("gColorMap");
+  m_normalTextureUnitLocation = GetUniformLocation("gNormalMap");
     m_eyeWorldPosLocation = GetUniformLocation("gEyeWorldPos");
     m_matSpecularIntensityLocation = GetUniformLocation("gMatSpecularIntensity");
     m_matSpecularPowerLocation = GetUniformLocation("gSpecularPower");
     m_screenSizeLocation = GetUniformLocation("gScreenSize");
 
-	if (m_WorldViewProjectionLocation == INVALID_UNIFORM_LOCATION ||
+  if (m_WorldViewProjectionLocation == INVALID_UNIFORM_LOCATION ||
         m_posTextureUnitLocation == INVALID_UNIFORM_LOCATION ||
         m_colorTextureUnitLocation == INVALID_UNIFORM_LOCATION ||
-		m_normalTextureUnitLocation == INVALID_UNIFORM_LOCATION ||
+    m_normalTextureUnitLocation == INVALID_UNIFORM_LOCATION ||
         m_eyeWorldPosLocation == INVALID_UNIFORM_LOCATION ||
         m_matSpecularIntensityLocation == INVALID_UNIFORM_LOCATION ||
         m_matSpecularPowerLocation == INVALID_UNIFORM_LOCATION ||
@@ -49,7 +49,7 @@ bool DSLightPassTech::Init()
         return false;
     }
 
-	return true;
+  return true;
 }
 
 
@@ -79,7 +79,7 @@ void DSLightPassTech::SetNormalTextureUnit(unsigned int TextureUnit)
 
 void DSLightPassTech::SetEyeWorldPos(const Vector3f& EyePos)
 {
-	glUniform3f(m_eyeWorldPosLocation, EyePos.x, EyePos.y, EyePos.z);
+  glUniform3f(m_eyeWorldPosLocation, EyePos.x, EyePos.y, EyePos.z);
 }
 
 

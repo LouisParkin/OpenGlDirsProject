@@ -1,6 +1,6 @@
 /*
 
-	Copyright 2010 Etay Meiri
+  Copyright 2010 Etay Meiri
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -83,21 +83,21 @@ const Matrix4f& Pipeline::GetWVOrthoPTrans()
 
 const Matrix4f& Pipeline::GetWVTrans()
 {
-	GetWorldTrans();
+  GetWorldTrans();
     GetViewTrans();
-	
-	m_WVtransformation = m_Vtransformation * m_Wtransformation;
-	return m_WVtransformation;
+  
+  m_WVtransformation = m_Vtransformation * m_Wtransformation;
+  return m_WVtransformation;
 }
 
 
 const Matrix4f& Pipeline::GetWPTrans()
 {
-	Matrix4f PersProjTrans;
+  Matrix4f PersProjTrans;
 
-	GetWorldTrans();
-	PersProjTrans.InitPersProjTransform(m_persProjInfo);
+  GetWorldTrans();
+  PersProjTrans.InitPersProjTransform(m_persProjInfo);
 
-	m_WPtransformation = PersProjTrans * m_Wtransformation;
-	return m_WPtransformation;
+  m_WPtransformation = PersProjTrans * m_Wtransformation;
+  return m_WPtransformation;
 }

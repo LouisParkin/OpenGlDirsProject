@@ -16,7 +16,7 @@
 */
 
 #ifndef GBUFFER_H
-#define	GBUFFER_H
+#define  GBUFFER_H
 
 #include <GL/glew.h>
 
@@ -51,5 +51,5 @@ private:
     GLuint m_finalTexture;
 };
 
-#endif	/* SHADOWMAPFBO_H */
+#endif  /* SHADOWMAPFBO_H */
 

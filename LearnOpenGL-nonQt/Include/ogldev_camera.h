@@ -1,6 +1,6 @@
 /*
 
-	Copyright 2010 Etay Meiri
+  Copyright 2010 Etay Meiri
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 */
 
 #ifndef CAMERA_H
-#define	CAMERA_H
+#define  CAMERA_H
 
 #include "ogldev_math_3d.h"
 #include "ogldev_keys.h"
@@ -77,5 +77,5 @@ private:
     Vector2i m_mousePos;
 };
 
-#endif	/* CAMERA_H */
+#endif  /* CAMERA_H */
 

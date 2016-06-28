@@ -16,7 +16,7 @@
 */
 
 #ifndef GBUFFER_H
-#define	GBUFFER_H
+#define  GBUFFER_H
 
 #include <GL/glew.h>
 
@@ -52,9 +52,10 @@ public:
 private:
                      
     GLuint m_fbo;
+    GLuint m_dbo;
     GLuint m_textures[GBUFFER_NUM_TEXTURES];
     GLuint m_depthTexture;
 };
 
-#endif	/* SHADOWMAPFBO_H */
+#endif  /* SHADOWMAPFBO_H */
 

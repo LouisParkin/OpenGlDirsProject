@@ -16,7 +16,7 @@
 */
 
 #ifndef OGLDEV_SHADOW_MAP_FBO_H
-#define	OGLDEV_SHADOW_MAP_FBO_H
+#define  OGLDEV_SHADOW_MAP_FBO_H
 
 #include <GL/glew.h>
 
@@ -58,5 +58,5 @@ private:
 };
 
 
-#endif	/* OGLDEV_SHADOW_MAP_FBO_H */
+#endif  /* OGLDEV_SHADOW_MAP_FBO_H */
 

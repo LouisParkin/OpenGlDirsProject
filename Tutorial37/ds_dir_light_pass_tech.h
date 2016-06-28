@@ -16,7 +16,7 @@
 */
 
 #ifndef DS_DIR_LIGHT_PASS_TECH_H
-#define	DS_DIR_LIGHT_PASS_TECH_H
+#define  DS_DIR_LIGHT_PASS_TECH_H
 
 #include "ds_light_pass_tech.h"
 #include "ogldev_lights_common.h"

@@ -1,6 +1,6 @@
 /*
 
-	Copyright 2014 Etay Meiri
+  Copyright 2014 Etay Meiri
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -73,7 +73,7 @@ bool OgldevBackendCreateWindow(uint Width, uint Height, bool isFullScreen, const
     
     
 
-	return false;
+  return false;
 }
 
 

@@ -1319,10 +1319,10 @@ public:
 
 private:
   std::string         _id;
-  ::ssize_t		_x;
-  ::ssize_t		_y;
-  size_t		_width;
-  size_t		_height;
+  ::ssize_t    _x;
+  ::ssize_t    _y;
+  size_t    _width;
+  size_t    _height;
 };
 
 // Rectangle
@@ -1628,7 +1628,7 @@ public:
   DrawableDashArray& operator=(const Magick::DrawableDashArray &original_);
 
 private:
-  size_t	_size;
+  size_t  _size;
   double       *_dasharray;
 };
 
@@ -2194,13 +2194,13 @@ public:
     }
 
 private:
-  double	_radiusX;	// X radius
-  double	_radiusY;	// Y radius
-  double	_xAxisRotation;	// Rotation relative to X axis
-  bool        _largeArcFlag;	// Draw longer of the two matching arcs
-  bool        _sweepFlag;	// Draw arc matching clock-wise rotation
-  double	_x;		// End-point X
-  double	_y;		// End-point Y
+  double  _radiusX;  // X radius
+  double  _radiusY;  // Y radius
+  double  _xAxisRotation;  // Rotation relative to X axis
+  bool        _largeArcFlag;  // Draw longer of the two matching arcs
+  bool        _sweepFlag;  // Draw arc matching clock-wise rotation
+  double  _x;    // End-point X
+  double  _y;    // End-point Y
 };
 
 // Compare two PathArcArgs objects regardless of LHS/RHS

@@ -1,6 +1,6 @@
 /*
 
-	Copyright 2014 Etay Meiri
+  Copyright 2014 Etay Meiri
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -104,18 +104,18 @@ static OGLDEV_KEY GLFWKeyToOGLDEVKey(uint Key)
 
 static OGLDEV_MOUSE GLFWMouseToOGLDEVMouse(uint Button)
 {
-	switch (Button) {
-	case GLFW_MOUSE_BUTTON_LEFT:
-		return OGLDEV_MOUSE_BUTTON_LEFT;
-	case GLFW_MOUSE_BUTTON_RIGHT:
-		return OGLDEV_MOUSE_BUTTON_RIGHT;
-	case GLFW_MOUSE_BUTTON_MIDDLE:
-		return OGLDEV_MOUSE_BUTTON_MIDDLE;
-	default:
-		OGLDEV_ERROR("Unimplemented OGLDEV mouse button");
-	}
+  switch (Button) {
+  case GLFW_MOUSE_BUTTON_LEFT:
+    return OGLDEV_MOUSE_BUTTON_LEFT;
+  case GLFW_MOUSE_BUTTON_RIGHT:
+    return OGLDEV_MOUSE_BUTTON_RIGHT;
+  case GLFW_MOUSE_BUTTON_MIDDLE:
+    return OGLDEV_MOUSE_BUTTON_MIDDLE;
+  default:
+    OGLDEV_ERROR("Unimplemented OGLDEV mouse button");
+  }
 
-	return OGLDEV_MOUSE_UNDEFINED;
+  return OGLDEV_MOUSE_UNDEFINED;
 }
 
 static void KeyCallback(GLFWwindow* , int key, int , int action, int )

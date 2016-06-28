@@ -16,7 +16,7 @@
  */
 
 #ifndef SHADOW_MAP_TECHNIQUE_H
-#define	SHADOW_MAP_TECHNIQUE_H
+#define  SHADOW_MAP_TECHNIQUE_H
 
 #include "technique.h"
 #include "ogldev_math_3d.h"
@@ -38,5 +38,5 @@ private:
 };
 
 
-#endif	/* SHADOW_MAP_TECHNIQUE_H */
+#endif  /* SHADOW_MAP_TECHNIQUE_H */
 

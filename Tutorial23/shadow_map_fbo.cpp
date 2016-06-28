@@ -40,7 +40,7 @@ ShadowMapFBO::~ShadowMapFBO()
 bool ShadowMapFBO::Init(unsigned int WindowWidth, unsigned int WindowHeight)
 {
     // Create the FBO
-    glGenFramebuffers(1, &m_fbo);    
+    glGenFramebuffers(1, &m_fbo);
 
     // Create the depth buffer
     glGenTextures(1, &m_shadowMap);

@@ -1,6 +1,6 @@
 /*
 
-	Copyright 2011 Etay Meiri
+  Copyright 2011 Etay Meiri
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 */
 
 #ifndef TECHNIQUE_H
-#define	TECHNIQUE_H
+#define  TECHNIQUE_H
 
 #include <list>
 #include <GL/glew.h>
@@ -52,5 +52,5 @@ private:
     ShaderObjList m_shaderObjList;
 };
 
-#endif	/* TECHNIQUE_H */
+#endif  /* TECHNIQUE_H */
 

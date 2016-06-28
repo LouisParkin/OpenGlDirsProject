@@ -1,6 +1,6 @@
 /*
 
-	Copyright 2011 Etay Meiri
+  Copyright 2011 Etay Meiri
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 */
 
 #ifndef OGLDEV_SKINNED_MESH_H
-#define	OGLDEV_SKINNED_MESH_H
+#define  OGLDEV_SKINNED_MESH_H
 
 #include <map>
 #include <vector>
@@ -43,7 +43,7 @@ public:
     bool LoadMesh(const string& Filename);
 
     void Render();
-	
+  
     uint NumBones() const
     {
         return m_NumBones;
@@ -147,5 +147,5 @@ enum VB_TYPES {
 };
 
 
-#endif	/* OGLDEV_SKINNED_MESH_H */
+#endif  /* OGLDEV_SKINNED_MESH_H */
 

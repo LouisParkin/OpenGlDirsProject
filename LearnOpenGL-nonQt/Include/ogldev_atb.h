@@ -1,5 +1,5 @@
 #ifndef OGLDEV_ATB_H
-#define	OGLDEV_ATB_H
+#define  OGLDEV_ATB_H
 
 #include "ogldev_keys.h"
 #include "ogldev_math_3d.h"

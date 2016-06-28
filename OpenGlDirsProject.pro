@@ -9,4 +9,5 @@ SUBDIRS += \
         Tutorial32 \
         Tutorial35 \
     Tutorial36 \
-    Tutorial37
+    Tutorial37 \
+    DeferredRenderTask

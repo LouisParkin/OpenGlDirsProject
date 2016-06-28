@@ -1,6 +1,6 @@
 /*
 
-	Copyright 2011 Etay Meiri
+  Copyright 2011 Etay Meiri
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 */
 
 #ifndef OGLDEV_CUBEMAP_TEXTURE_H
-#define	OGLDEV_CUBEMAP_TEXTURE_H
+#define  OGLDEV_CUBEMAP_TEXTURE_H
 
 #include <string>
 #include <GL/glew.h>
@@ -49,5 +49,5 @@ private:
     GLuint m_textureObj;
 };
 
-#endif	/* OGLDEV_CUBEMAP_TEXTURE_H */
+#endif  /* OGLDEV_CUBEMAP_TEXTURE_H */
 

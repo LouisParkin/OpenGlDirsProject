@@ -16,7 +16,7 @@
 */
 
 #ifndef IO_BUFFER_H
-#define	IO_BUFFER_H
+#define  IO_BUFFER_H
 
 #include <GL/glew.h>
 
@@ -43,5 +43,5 @@ private:
     GLenum m_internalType;
 };
 
-#endif	/* IO+BUFFER_H */
+#endif  /* IO+BUFFER_H */
 

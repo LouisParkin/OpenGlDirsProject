@@ -1,6 +1,6 @@
 /*
 
-	Copyright 2014 Etay Meiri
+  Copyright 2014 Etay Meiri
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 */
 
 #ifndef OGLDEV_UTIL_H
-#define	OGLDEV_UTIL_H
+#define  OGLDEV_UTIL_H
 
 #ifndef WIN32
 #include <unistd.h>
@@ -72,5 +72,5 @@ float fmax(float a, float b);
 
 long long GetCurrentTimeMillis();
 
-#endif	/* OGLDEV_UTIL_H */
+#endif  /* OGLDEV_UTIL_H */
 

@@ -134,10 +134,10 @@ namespace Magick
 
   private:
     
-    Color          _borderColor;	// Frame border color
-    size_t   _borderWidth;	// Pixels between thumbnail and surrounding frame
-    Geometry       _frame;		// Frame geometry (width & height frame thickness)
-    Color          _matteColor;		// Frame foreground color
+    Color          _borderColor;  // Frame border color
+    size_t   _borderWidth;  // Pixels between thumbnail and surrounding frame
+    Geometry       _frame;    // Frame geometry (width & height frame thickness)
+    Color          _matteColor;    // Frame foreground color
   };
 } // namespace Magick
 

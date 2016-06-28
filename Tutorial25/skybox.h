@@ -1,6 +1,6 @@
 /*
 
-	Copyright 2011 Etay Meiri
+  Copyright 2011 Etay Meiri
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 */
 
 #ifndef SKYBOX_H
-#define	SKYBOX_H
+#define  SKYBOX_H
 
 #include "ogldev_camera.h"
 #include "skybox_technique.h"
@@ -49,5 +49,5 @@ private:
     PersProjInfo m_persProjInfo;
 };
 
-#endif	/* SKYBOX_H */
+#endif  /* SKYBOX_H */
 
